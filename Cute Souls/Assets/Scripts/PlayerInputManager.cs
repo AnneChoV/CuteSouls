@@ -102,6 +102,6 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
 
     void HandleClassSwap()
     {
-        m_attackMoves.HandleClassSwap()
+        m_attackMoves.HandleClassSwap();
     }
 }
