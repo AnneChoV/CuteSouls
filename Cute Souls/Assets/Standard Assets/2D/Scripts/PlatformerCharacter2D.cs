@@ -11,16 +11,21 @@ namespace UnityStandardAssets._2D
         [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
         [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 
-        private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
+        public Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
         private bool m_Grounded;            // Whether or not the player is grounded.
-        private Transform m_CeilingCheck;   // A position marking where to check for ceilings
+        public Transform m_CeilingCheck;   // A position marking where to check for ceilings
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
-        private Animator m_Anim;            // Reference to the player's animator component.
-        private Rigidbody2D m_Rigidbody2D;
+        public Animator m_Anim;            // Reference to the player's animator component.
+        public Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
         private void Awake()
+        {
+
+        }
+
+        private void OnValidate()
         {
             // Setting up references.
             m_GroundCheck = transform.Find("GroundCheck");
