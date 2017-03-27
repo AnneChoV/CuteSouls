@@ -34,7 +34,8 @@ public class AttackMoves : MonoBehaviour {  //This is a class shared by players 
 
     public void HandleClassSwap()
     {
-        m_Stats.currentClass = (CharacterStats.playerClass)(((((int)(m_Stats.currentClass)) + 1) % 3)); //Casts currentClass into int, adds one, modulus 3 to get a number between 0 and 2, then converts back to the enum.
+        m_Stats.currentClass = (CharacterStats.Class)(((((int)(m_Stats.currentClass)) + 1) % 3)); //Casts currentClass into int, adds one, modulus 3 to get a number between 0 and 2, then converts back to the enum.
+        m_Stats.InitiateStats();
     }
 
     public void MeleeFrontAttack()    //Attack in front.
