@@ -5,27 +5,24 @@ using UnityEngine;
 public class PlayerInputManager : MonoBehaviour {       //This class is used by player to handle input only.
 
 
-    [Header("KeyCodes")]    //These are essentially enums for key presses. 
+    [Header("KeyCodes")] 
     public KeyCode k_LeftKey = KeyCode.A;
     public KeyCode k_RightKey = KeyCode.D;
     public KeyCode k_JumpKey = KeyCode.W;
     public KeyCode k_ClassSwapKey = KeyCode.S;
     public KeyCode k_SkillKey = KeyCode.Space;
 
-    //Can't edit, can double click to find owner. :)
-
     [ReadOnly] public CharacterStats m_stats;
     [ReadOnly] public AttackMoves m_attackMoves;
     [ReadOnly] public MovementManager m_movementManager;
 
-    void OnValidate()   //This gets called whenever inspector changes. 
+    void OnValidate()  
     {
         m_stats = GetComponent<CharacterStats>();
         m_attackMoves = GetComponent<AttackMoves>();
         m_movementManager = GetComponent<MovementManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         CheckMovement();
@@ -75,7 +72,7 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
 
     void HandleJumpRelease()
     {
-       // m_movementManager.HandleJumpRelease();
+        // m_movementManager.HandleJumpRelease();
     }
 
     //CASTING FUNCTIONS
@@ -89,7 +86,7 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
 
     void HandleCast()
     {
-        m_attackMoves.UsePlayerClassAttack((int)m_stats.currentClass);
+       // m_attackMoves.UsePlayerClassAttack((int)m_stats.currentClass);
     }
 
     void CheckClassSwap()

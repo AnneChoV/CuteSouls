@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Porcupine : Archetype {
-
+public class Mouse : Archetype {
 
 }

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Melee : MonoBehaviour
-{
+[System.Serializable]
+public struct StatsTemplate {
 
-    [ReadOnly]
-    public CharacterStats characterStats;
+    [Header("Character Stats")]
+    public float m_Health;
+
     //IF YOU NEED TO CHANGE THE SLIDER SETTINGS EDIT THE RANGE:
     [Header("Movement Variables")]
     [Range(0.0f, 50.0f)]
@@ -24,11 +25,6 @@ public class Melee : MonoBehaviour
     [Range(0.0f, 16.0f)]
     public float m_jumpSpeedGravityScale;   //Directly changes this entities gravity. Needs to be atleast one or you can't move.
     [Range(0, 100)]
-    public int m_jumpsLeft;
-
-    private void OnValidate()
-    {
-        characterStats = GetComponentInParent<CharacterStats>();
-    }
+    public int m_jumpsTotal;
 
 }

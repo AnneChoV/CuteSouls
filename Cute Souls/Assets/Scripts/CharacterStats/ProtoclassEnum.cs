@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Porcupine : Archetype {
-
-
+public enum Protoclass
+{
+    TORTOISE,
+    MELEE,
+    PORCUPINE,
+    EVILSLASHER
 }

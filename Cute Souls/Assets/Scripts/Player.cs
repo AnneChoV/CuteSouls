@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public CharacterStats Stats;
+    [ReadOnly] public Archetype tortoise;
+    [ReadOnly] public Archetype porcupine;
+    [ReadOnly] public Archetype mouse;
 
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    private void OnValidate()
+    {
+        tortoise = GetComponent<Tortoise>();
+        porcupine = GetComponent<Porcupine>();
+        mouse = GetComponent<Mouse>();
+    }
 }
