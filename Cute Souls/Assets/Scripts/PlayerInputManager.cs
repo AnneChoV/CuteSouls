@@ -75,7 +75,7 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
 
     void HandleJumpRelease()
     {
-        m_movementManager.HandleJumpRelease();
+       // m_movementManager.HandleJumpRelease();
     }
 
     //CASTING FUNCTIONS
