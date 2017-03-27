@@ -14,8 +14,6 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
-
         // Raycasting all objects with enemy tag, left and right
         RaycastHit2D[] leftHit = Physics2D.RaycastAll(transform.position, -transform.right, 5.0f);
         RaycastHit2D[] rightHit = Physics2D.RaycastAll(transform.position, transform.right, 5.0f);
