@@ -13,4 +13,5 @@ public class Archetype : MonoBehaviour {
     {
         m_abilities = GetComponentsInChildren<Ability>();
     }
+
 }
