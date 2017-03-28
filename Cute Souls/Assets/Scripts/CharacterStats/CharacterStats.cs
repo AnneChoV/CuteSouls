@@ -10,6 +10,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     [Header("Character Stats")]
 
     public Archetype m_currentProtoclass;
+    [ReadOnly] public Archetype[] availableArchetypes;
     [ReadOnly] public float m_currentHealth;
 
     [ReadOnly]
@@ -18,8 +19,6 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     public StatsTemplate m_equipmentStats;
     [ReadOnly]
     public StatsTemplate m_TotalStats;
-
-
 
     [Header("Movement Status's")]
     [ReadOnly] public bool IsGrounded;
@@ -41,5 +40,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
         m_TotalStats.m_jumpHeight = m_defaultStats.m_jumpHeight + m_equipmentStats.m_jumpHeight;
         m_TotalStats.m_jumpsTotal = m_defaultStats.m_jumpsTotal + m_equipmentStats.m_jumpsTotal;
         m_TotalStats.m_maxSpeed = m_defaultStats.m_maxSpeed + m_equipmentStats.m_maxSpeed;
+
+        availableArchetypes = GetComponents<Archetype>();
     }
 }

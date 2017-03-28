@@ -67,7 +67,7 @@
 
 ////public struct CharacterStats
 ////{
-//    // All the character stat values
+//// All the character stat values
 ////}
 
 ////public class StatsManager   //I think Ill bypass this.
@@ -88,7 +88,7 @@
 //{
 //    public Archetype[] m_Archetypes;
 
-//  //  public StatsManager m_Stats;
+//    //  public StatsManager m_Stats;
 //    public int m_Health;
 //    public int m_OtherShit;
 //}

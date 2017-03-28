@@ -3,18 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    [ReadOnly] public Archetype tortoise;
+    [ReadOnly] public Archetype tortoise; //These don't actually contain anything. If they were computer controlled they would have AI.
     [ReadOnly] public Archetype porcupine;
     [ReadOnly] public Archetype mouse;
 
-
-
-    private void OnValidate()
-    {
-        tortoise = GetComponent<Tortoise>();
-        porcupine = GetComponent<Porcupine>();
-        mouse = GetComponent<Mouse>();
-    }
     void Update() {
         // Raycasting all objects with enemy tag, left and right
         RaycastHit2D[] leftHit = Physics2D.RaycastAll(transform.position, -transform.right, 5.0f);

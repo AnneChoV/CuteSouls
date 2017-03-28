@@ -30,6 +30,8 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
         CheckClassSwap();
     }
 
+
+
     private void CheckMovement()
     {
         //LEFT RIGHT
@@ -99,6 +101,6 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
 
     void HandleClassSwap()
     {
-        m_attackMoves.HandleClassSwap();
+        m_stats.m_currentProtoclass.m_abilities[0].UseAbility();
     }
 }
