@@ -12,6 +12,7 @@ public class FloorColliderTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        Debug.Log(other.name);
         other.GetComponent<CharacterStats>().IsGrounded = false;
         if (other.GetComponent<CharacterStats>().IsOnLeftWall == false && other.GetComponent<CharacterStats>().IsOnRightWall == false)
         {

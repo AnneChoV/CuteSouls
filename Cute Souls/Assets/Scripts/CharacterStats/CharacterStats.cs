@@ -38,9 +38,15 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
         m_TotalStats.m_groundFriction = m_defaultStats.m_groundFriction + m_equipmentStats.m_groundFriction;
         m_TotalStats.m_Health = m_defaultStats.m_Health + m_equipmentStats.m_Health;
         m_TotalStats.m_jumpHeight = m_defaultStats.m_jumpHeight + m_equipmentStats.m_jumpHeight;
+        m_TotalStats.m_jumpSpeedGravityScale = m_defaultStats.m_jumpSpeedGravityScale + m_defaultStats.m_jumpSpeedGravityScale;
         m_TotalStats.m_jumpsTotal = m_defaultStats.m_jumpsTotal + m_equipmentStats.m_jumpsTotal;
         m_TotalStats.m_maxSpeed = m_defaultStats.m_maxSpeed + m_equipmentStats.m_maxSpeed;
 
         availableArchetypes = GetComponents<Archetype>();
+
+        if (!IsOnLeftWall && !IsOnRightWall && !IsGrounded)
+        {
+            isInAir = true;
+        }
     }
 }

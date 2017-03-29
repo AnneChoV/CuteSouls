@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MovementManager : MonoBehaviour {  //This is a class shared by player and enemies to handle movements.
 
-
     [ReadOnly]
     public Vector2 m_facingDirection;
     [ReadOnly]
@@ -19,7 +18,7 @@ public class MovementManager : MonoBehaviour {  //This is a class shared by play
     {
         m_Stats = GetComponent<CharacterStats>();
         m_rigidBody = GetComponent<Rigidbody2D>();
-        m_rigidBody.gravityScale = m_Stats.m_TotalStats.m_jumpSpeedGravityScale;
+       // m_rigidBody.gravityScale = m_Stats.m_TotalStats.m_jumpSpeedGravityScale;
     }
 
     private void Update()
