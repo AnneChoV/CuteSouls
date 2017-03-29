@@ -15,15 +15,15 @@ public class EnemyShoot : MonoBehaviour {
     public float waitInbetween;
     private float shotCounter;
 
-	// Use this for initialization
-	void Start () {
+    private void OnValidate()
+    {
         player = FindObjectOfType<Player>();
 
         shotCounter = waitInbetween;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update () {
         Debug.DrawLine(new Vector3(transform.position.x - playerRange, transform.position.y, transform.position.z), new Vector3(transform.position.x + playerRange, transform.position.y, transform.position.z));
         shotCounter -= Time.deltaTime;
 
