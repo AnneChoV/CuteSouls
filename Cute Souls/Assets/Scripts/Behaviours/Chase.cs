@@ -1,0 +1,29 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Chase : BehaviourAbstract
+{
+
+    public override void ActOnBehaviour(Vector3 _targetPosition)
+    { 
+        Vector3 movementDirection = m_playerPosition - transform.position;
+        Debug.Log(movementDirection.x);
+            Debug.Log(m_playerPosition);
+        if (movementDirection.x > 0)
+        {
+            m_movementManager.HandleMoveRight();
+        }
+        else if (movementDirection.x < 0)
+        {
+            m_movementManager.HandleMoveLeft();
+        }
+        else
+        {
+            // m_movementManager.HandleJumpStart(); //we'll get it to jump on the player once we have jumps resetting on ground touch.
+        }
+        //WE CAN CHECK FOR Y HERE TOO IF WE WANT
+    }
+
+
+}
