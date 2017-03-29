@@ -6,12 +6,13 @@ public class Archetype : MonoBehaviour {
 
     public StatsTemplate m_classDefaultStats;
     public Ability[] m_abilities;
+    public BehaviourAbstract[] m_behaviours;
 
     public StatsTemplate m_EquipmentStats;  //LATER ON THIS SHOULD BE READ ONLY AND UPDATE WITH CURRENT PLAYER EQUIPMENT.
 
     private void OnValidate()
     {
         m_abilities = GetComponentsInChildren<Ability>();
+        m_behaviours = GetComponentsInChildren<BehaviourAbstract>();
     }
-
 }

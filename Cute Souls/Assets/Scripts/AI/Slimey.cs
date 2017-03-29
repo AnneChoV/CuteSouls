@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Slimey : AbstractEnemy
 {
+    private void Start()
+    {
+        m_currentBehaviour = archetype.m_behaviours[1];
+    }
     void Update ()
     {
-        m_currentBehaviour.ActOnBehaviour();    //This should make it move how we want.
+        m_currentBehaviour.ActOnBehaviour(m_playerPosition);    //This should make it move how we want.
     }
 }
