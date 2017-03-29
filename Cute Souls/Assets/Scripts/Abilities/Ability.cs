@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Ability : MonoBehaviour {
     public CharacterStats characterStats;
     public string abilityName;
+    public Vector3 target;
     private void OnValidate()
     {
         characterStats = GetComponentInParent<CharacterStats>();
