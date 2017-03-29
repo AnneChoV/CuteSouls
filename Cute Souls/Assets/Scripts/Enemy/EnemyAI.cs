@@ -38,18 +38,18 @@ public class EnemyAI : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         PatrolBehaviour();
-        ShootAtPlayer();
+    //    ShootAtPlayer();
 	}
 
-    void OnSeePlayer()
-    {
+    //void OnSeePlayer()
+    //{
 
-    }
+    //}
 
-    void DistanceFromPlayer()
-    {
+    //void DistanceFromPlayer()
+    //{
 
-    }
+    //}
 
     void PatrolBehaviour()
     {
@@ -79,28 +79,28 @@ public class EnemyAI : MonoBehaviour {
 
     }
 
-    void ShootAtPlayer()
-    {
-        // Create debug line to see range (Only in Scene Mode)
-        Debug.DrawLine(new Vector3(transform.position.x - playerRange, transform.position.y, transform.position.z), new Vector3(transform.position.x + playerRange, transform.position.y, transform.position.z));
+    //void ShootAtPlayer()
+    //{
+    //    // Create debug line to see range (Only in Scene Mode)
+    //    Debug.DrawLine(new Vector3(transform.position.x - playerRange, transform.position.y, transform.position.z), new Vector3(transform.position.x + playerRange, transform.position.y, transform.position.z));
 
-        // Tick tock
-        shotCounter -= Time.deltaTime;
+    //    // Tick tock
+    //    shotCounter -= Time.deltaTime;
 
-        if (transform.localScale.x < 0 && player.transform.position.x > transform.position.x
-            && player.transform.position.x < transform.position.x + playerRange && shotCounter < 0)
-        {
-            Instantiate(enemyProjectile, launchPoint.position, launchPoint.rotation);
-            shotCounter = waitInbetween;
-        }
+    //    if (transform.localScale.x < 0 && player.transform.position.x > transform.position.x
+    //        && player.transform.position.x < transform.position.x + playerRange && shotCounter < 0)
+    //    {
+    //        Instantiate(enemyProjectile, launchPoint.position, launchPoint.rotation);
+    //        shotCounter = waitInbetween;
+    //    }
 
-        if (transform.localScale.x > 0 && player.transform.position.x < transform.position.x
-            && player.transform.position.x > transform.position.x - playerRange && shotCounter < 0)
-        {
-            Instantiate(enemyProjectile, launchPoint.position, launchPoint.rotation);
-            shotCounter = waitInbetween;
-        }
-    }
+    //    if (transform.localScale.x > 0 && player.transform.position.x < transform.position.x
+    //        && player.transform.position.x > transform.position.x - playerRange && shotCounter < 0)
+    //    {
+    //        Instantiate(enemyProjectile, launchPoint.position, launchPoint.rotation);
+    //        shotCounter = waitInbetween;
+    //    }
+    //}
 
     void MeleeHitPlayer()
     {

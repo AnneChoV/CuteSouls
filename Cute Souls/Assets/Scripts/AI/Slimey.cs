@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Slimey : AbstractEnemy
 {
-    // Update is called once per frame
     void Update ()
     {
-        movementManager.HandleMoveLeft();
-	}
+        m_currentBehaviour.ActOnBehaviour();    //This should make it move how we want.
+    }
 }

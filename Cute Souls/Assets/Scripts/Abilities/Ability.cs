@@ -4,11 +4,15 @@ using UnityEngine;
 
 public abstract class Ability : MonoBehaviour {
     public CharacterStats characterStats;
-    public string abilityName;
-    public Vector3 target;
+    //public string abilityName;
+
     private void OnValidate()
     {
         characterStats = GetComponentInParent<CharacterStats>();
     }
-    public abstract void UseAbility();
+    public abstract void UseAbility();  //Abstract forces all abilities to have a UseAbility function.
+    public virtual void UseAbility(Vector3 _targetPosition){}
+    public virtual void UseAbility(Vector3 _targetPosition, Vector3 _instantiationPosition, GameObject _instantiationObject) {}
+    public virtual void UseAbility(float AoERange) { }
+
 }
