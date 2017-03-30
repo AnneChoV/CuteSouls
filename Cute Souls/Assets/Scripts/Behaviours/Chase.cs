@@ -8,8 +8,8 @@ public class Chase : BehaviourAbstract
     public override void ActOnBehaviour(Vector3 _targetPosition)
     { 
         Vector3 movementDirection = m_playerPosition - transform.position;
-        Debug.Log(movementDirection.x);
-            Debug.Log(m_playerPosition);
+      //  Debug.Log(movementDirection.x);
+      //      Debug.Log(m_playerPosition);
         if (movementDirection.x > 0)
         {
             m_movementManager.HandleMoveRight();

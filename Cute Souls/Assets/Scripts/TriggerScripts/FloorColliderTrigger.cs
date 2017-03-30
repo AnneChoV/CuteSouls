@@ -8,6 +8,15 @@ public class FloorColliderTrigger : MonoBehaviour
     {
         other.GetComponent<CharacterStats>().IsGrounded = true;
         other.GetComponent<CharacterStats>().isInAir = false;
+        Debug.Log("Entering");
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        other.GetComponent<CharacterStats>().IsGrounded = true;
+        other.GetComponent<CharacterStats>().isInAir = false;
+        Debug.Log("dgxdfgfddgf");
+
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -16,6 +25,7 @@ public class FloorColliderTrigger : MonoBehaviour
         other.GetComponent<CharacterStats>().IsGrounded = false;
         if (other.GetComponent<CharacterStats>().IsOnLeftWall == false && other.GetComponent<CharacterStats>().IsOnRightWall == false)
         {
+            Debug.Log("Exiting");
             other.GetComponent<CharacterStats>().isInAir = true;
         }
     }
