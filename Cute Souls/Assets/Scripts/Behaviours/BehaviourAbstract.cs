@@ -30,10 +30,8 @@ public abstract class BehaviourAbstract : MonoBehaviour
 
     public virtual bool NotAtEdge()
     {
-        //bool notAtEdge = Physics2D.OverlapCircle(transform.parent.Find("EdgeCheck").position, 1.0f, LayerMask.NameToLayer("Ground"));
-        //return notAtEdge;
-
-        return transform.GetComponent<CharacterStats>().IsGrounded;
+        bool notAtEdge = Physics2D.OverlapCircle(transform.parent.Find("EdgeCheck").position, 0.1f, LayerMask.NameToLayer("Ground"));
+        return notAtEdge;
     }
 
     public virtual void DetectWall()
