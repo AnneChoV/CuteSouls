@@ -6,15 +6,17 @@ public abstract class BehaviourAbstract : MonoBehaviour
 {
     public MovementManager m_movementManager;
 
+
+    [Header("Player")]
     [ReadOnly] public GameObject m_player;
-   [ReadOnly] public Vector3 m_playerPosition;
+    [ReadOnly] public Vector3 m_playerPosition;
+
 
     private void OnValidate()
     {
         m_movementManager = GetComponentInParent<MovementManager>();
 
         m_player = GameObject.Find("Player");
-
     }
     public abstract void ActOnBehaviour(Vector3 _targetPosition);
 
@@ -25,4 +27,18 @@ public abstract class BehaviourAbstract : MonoBehaviour
             m_playerPosition = m_player.transform.position; //if this is displaying an error that it cant find it, check if any of the enemies have a reference to the player as proof it's still working. Unity dumb.
         }
     }
+
+    public virtual bool NotAtEdge()
+    {
+        //bool notAtEdge = Physics2D.OverlapCircle(transform.parent.Find("EdgeCheck").position, 1.0f, LayerMask.NameToLayer("Ground"));
+        //return notAtEdge;
+
+        return transform.GetComponent<CharacterStats>().IsGrounded;
+    }
+
+    public virtual void DetectWall()
+    {
+
+    }
+
 }
