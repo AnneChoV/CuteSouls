@@ -13,6 +13,8 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     [ReadOnly] public Archetype[] availableArchetypes;
     public Sprite[] m_Sprites;
     [ReadOnly] public float m_currentHealth;
+    [ReadOnly] public float m_MaxHealth;
+    [ReadOnly] public float m_percentageHealth; //USE THIS FOR THE BAR
     [ReadOnly] public int jumpsAvailable;
 
     [ReadOnly]
@@ -51,5 +53,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
         {
             isInAir = true;
         }
+        m_currentHealth = m_TotalStats.m_Health;
+        m_MaxHealth = m_TotalStats.m_Health;
     }
 }
