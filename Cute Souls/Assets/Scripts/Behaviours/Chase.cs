@@ -9,10 +9,16 @@ public class Chase : BehaviourAbstract
     public override void ActOnBehaviour(Vector3 _targetPosition)
     { 
         Vector3 movementDirection = m_playerPosition - transform.position;
+<<<<<<< HEAD
         //Debug.Log(movementDirection.x);
         //Debug.Log(m_playerPosition);
 
         if (movementDirection.x > 0 && NotAtEdge())
+=======
+      //  Debug.Log(movementDirection.x);
+      //      Debug.Log(m_playerPosition);
+        if (movementDirection.x > 0)
+>>>>>>> RefactorBranch
         {
             m_movementManager.HandleMoveRight();
         }

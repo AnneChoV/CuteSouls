@@ -19,3 +19,5 @@ public class LeftWallColliderScript : MonoBehaviour {
         }
     }
 }
+
+//AMBIE PUT SCRIPTS INPLATFORMS
