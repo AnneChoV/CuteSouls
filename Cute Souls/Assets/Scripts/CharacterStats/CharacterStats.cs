@@ -11,7 +11,9 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
 
     public Archetype m_currentProtoclass;
     [ReadOnly] public Archetype[] availableArchetypes;
+    public Sprite[] m_Sprites;
     [ReadOnly] public float m_currentHealth;
+    [ReadOnly] public int jumpsAvailable;
 
     [ReadOnly]
     public StatsTemplate m_defaultStats;
@@ -41,6 +43,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
         m_TotalStats.m_jumpSpeedGravityScale = m_defaultStats.m_jumpSpeedGravityScale + m_defaultStats.m_jumpSpeedGravityScale;
         m_TotalStats.m_jumpsTotal = m_defaultStats.m_jumpsTotal + m_equipmentStats.m_jumpsTotal;
         m_TotalStats.m_maxSpeed = m_defaultStats.m_maxSpeed + m_equipmentStats.m_maxSpeed;
+        jumpsAvailable = m_TotalStats.m_jumpsTotal; //Start with max jumps.
 
         availableArchetypes = GetComponents<Archetype>();
 
