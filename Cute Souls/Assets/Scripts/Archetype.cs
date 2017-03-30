@@ -8,6 +8,9 @@ public class Archetype : MonoBehaviour {
     public Ability[] m_abilities;
     public BehaviourAbstract[] m_behaviours;
 
+
+
+
     public StatsTemplate m_EquipmentStats;  //LATER ON THIS SHOULD BE READ ONLY AND UPDATE WITH CURRENT PLAYER EQUIPMENT.
 
     private void OnValidate()

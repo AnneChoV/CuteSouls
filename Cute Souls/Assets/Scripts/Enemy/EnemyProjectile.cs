@@ -5,22 +5,25 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour {
 
     public float speed;
-    public Player player;
     public float rotationSpeed;
     public int damageToGive;
+
+    public Vector3 UserPosition;
 
     private Rigidbody2D myRigidbody;
 
     // Use this for initialization
     void Start()
     {
-        player = FindObjectOfType<Player>();
+        UserPosition = transform.parent.parent.GetComponent<Transform>().position;
+
         myRigidbody = GetComponent<Rigidbody2D>();
 
-        if (player.transform.position.x < transform.position.x)
+        if (UserPosition.x > transform.position.x)
         {
             speed = -speed;
             rotationSpeed = -rotationSpeed;
+            Debug.Log(UserPosition.x);
         }
     }
 

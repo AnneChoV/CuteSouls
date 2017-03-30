@@ -119,11 +119,11 @@ public class MovementManager : MonoBehaviour
     //JUMP FUNCTIONS
     public void HandleJumpStart()
     {
-        if (m_Stats.m_TotalStats.m_jumpsTotal > 0)
+        if (m_Stats.jumpsAvailable > 0)
         {
             m_rigidBody.velocity = new Vector2(m_rigidBody.velocity.x, 0.0f);
             m_rigidBody.AddForce(new Vector2(0, m_Stats.m_TotalStats.m_jumpHeight * m_Stats.m_TotalStats.m_jumpSpeedGravityScale / 4), ForceMode2D.Impulse);
-            m_Stats.m_TotalStats.m_jumpsTotal--;
+            m_Stats.jumpsAvailable--;
         }
         else
         {

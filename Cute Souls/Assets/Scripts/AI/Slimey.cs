@@ -4,14 +4,35 @@ using UnityEngine;
 
 public class Slimey : AbstractEnemy
 {
+    public GameObject SlimeyProjectile;
+
+
+    public float timeBetweenUseAbilityZero;
+    [ReadOnly] private float abilityZeroTimer;
+
+
     private void Start()
     {
         m_currentBehaviour = archetype.m_behaviours[0];
         archetype.m_abilities[1].UseAbility();
     }
-    void Update ()
+    private void Update()
     {
+        base.Update();
         m_currentBehaviour.ActOnBehaviour(m_playerPosition);    //This should make it move how we want.
-        archetype.m_abilities[0].UseAbility();
+
+        abilityZeroTimer -= Time.deltaTime;
+
+        if (abilityZeroTimer <= 0.0f)
+        {
+            Debug.Log(m_playerPosition);
+            archetype.m_abilities[0].UseAbility(m_playerPosition, transform.position, SlimeyProjectile);
+            abilityZeroTimer = timeBetweenUseAbilityZero;
+        }
+    }
+
+    private void OnValidate()
+    {
+        abilityZeroTimer = timeBetweenUseAbilityZero;
     }
 }
