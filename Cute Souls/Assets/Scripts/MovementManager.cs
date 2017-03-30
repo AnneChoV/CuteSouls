@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementManager : MonoBehaviour {  //This is a class shared by player and enemies to handle movements.
+public class MovementManager : MonoBehaviour
+{  //This is a class shared by player and enemies to handle movements.
 
     [ReadOnly]
-    public Vector2 m_facingDirection;
+    public bool isfacingRight;
     [ReadOnly]
     public Vector2 m_attackingDirection;
 
@@ -18,7 +19,7 @@ public class MovementManager : MonoBehaviour {  //This is a class shared by play
     {
         m_Stats = GetComponent<CharacterStats>();
         m_rigidBody = GetComponent<Rigidbody2D>();
-       // m_rigidBody.gravityScale = m_Stats.m_TotalStats.m_jumpSpeedGravityScale;
+        // m_rigidBody.gravityScale = m_Stats.m_TotalStats.m_jumpSpeedGravityScale;
     }
 
     private void Update()
@@ -30,6 +31,7 @@ public class MovementManager : MonoBehaviour {  //This is a class shared by play
 
     public void HandleMoveLeft()
     {
+        isfacingRight = false;
         float efficacy;
         if (m_rigidBody.velocity.x > 0)
         {
@@ -41,6 +43,7 @@ public class MovementManager : MonoBehaviour {  //This is a class shared by play
         }
         if (m_Stats.IsGrounded)   //If grounded
         {
+            transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * -1 * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
         }
         else if (m_Stats.isInAir)
@@ -65,6 +68,7 @@ public class MovementManager : MonoBehaviour {  //This is a class shared by play
 
     public void HandleMoveRight()
     {
+        isfacingRight = true;
         float efficacy;
         if (m_rigidBody.velocity.x < 0)
         {
@@ -77,6 +81,7 @@ public class MovementManager : MonoBehaviour {  //This is a class shared by play
 
         if (m_Stats.IsGrounded)   //If grounded
         {
+            transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
         }
         else if (m_Stats.isInAir)

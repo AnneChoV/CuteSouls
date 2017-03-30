@@ -19,6 +19,8 @@ TagManager:
   - Panel
   - CraftSystem
   - ResultSlot
+  - MainInventory
+  - Timer
   layers:
   - Default
   - TransparentFX
@@ -29,7 +31,7 @@ TagManager:
   - 
   - 
   - Ground
-  - 
+  - Player
   - 
   - 
   - 

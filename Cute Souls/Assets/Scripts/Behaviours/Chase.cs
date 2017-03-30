@@ -11,8 +11,6 @@ public class Chase : BehaviourAbstract
         //Debug.Log(movementDirection.x);
         //Debug.Log(m_playerPosition);
 
-        Debug.Log(NotAtEdge());
-
         if (movementDirection.x > 0 && NotAtEdge())
         {
             m_movementManager.HandleMoveRight();

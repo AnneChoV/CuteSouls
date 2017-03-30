@@ -6,7 +6,7 @@ public class Slimey : AbstractEnemy
 {
     private void Start()
     {
-        m_currentBehaviour = archetype.m_behaviours[1];
+        m_currentBehaviour = archetype.m_behaviours[4];
     }
     void Update ()
     {
