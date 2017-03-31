@@ -20,7 +20,7 @@ public class MovementManager : MonoBehaviour
         isfacingRight = true;
         m_Stats = GetComponent<CharacterStats>();
         m_rigidBody = GetComponent<Rigidbody2D>();
-        // m_rigidBody.gravityScale = m_Stats.m_TotalStats.m_jumpSpeedGravityScale;
+        isfacingRight = true;
     }
 
     private void Update()
@@ -67,13 +67,15 @@ public class MovementManager : MonoBehaviour
         }
         if (isfacingRight == true)
         {
-            isfacingRight = false;
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            isfacingRight = false;
         }
     }
 
     public void HandleMoveRight()
     {
+
+
         float efficacy;
         if (m_rigidBody.velocity.x < 0)
         {
@@ -105,11 +107,10 @@ public class MovementManager : MonoBehaviour
             Debug.Log("This case should never be reached. Something's wrong.");
             return;
         }
-
         if (isfacingRight == false)
         {
-            isfacingRight = true;
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            isfacingRight = true;
         }
     }
 
