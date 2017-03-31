@@ -30,7 +30,6 @@ public class Slimey : AbstractEnemy
            // archetype.m_abilities[0].UseAbility(m_playerPosition, transform.position, SlimeyProjectile);
             abilityZeroTimer = timeBetweenUseAbilityZero;
         }
-
     }
 
     private void OnValidate()
@@ -40,19 +39,19 @@ public class Slimey : AbstractEnemy
     }
 
 
-    //private void OnTriggerStay2D(Collider2D collision) //lose health
-    //{
-    //    if (collision.gameObject.name == "Player")
-    //    {
-    //        Debug.Log("Ssdfdsdfssdfdsf");
-    //    }
-    //}
+    private void OnTriggerStay2D(Collider2D collision) //lose health
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            collision.GetComponent<CharacterStats>().m_currentHealth -= archetype.m_totalStats.m_DamageToOtherUponCollision;
+            Debug.Log("Character lost health.");
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Player")
         {
-            Debug.Log("Sdsf");
             Physics2D.IgnoreCollision(collision, GetComponent<Collider2D>(), true);
         }
     }

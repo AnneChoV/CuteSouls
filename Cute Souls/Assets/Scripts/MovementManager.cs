@@ -73,8 +73,6 @@ public class MovementManager : MonoBehaviour
 
     public void HandleMoveRight()
     {
-
-
         float efficacy;
         if (m_rigidBody.velocity.x < 0)
         {
@@ -119,7 +117,14 @@ public class MovementManager : MonoBehaviour
         float efficacy = Mathf.Abs(m_rigidBody.velocity.x) - m_Stats.m_TotalStats.m_groundFriction;
         {
             if (m_Stats.IsGrounded)
-                m_rigidBody.AddForce(new Vector2(-m_rigidBody.velocity.x * m_Stats.m_TotalStats.m_groundFriction, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
+            {
+                m_rigidBody.AddForce(new Vector2(-m_rigidBody.velocity.x * m_Stats.m_TotalStats.m_groundFriction * 2.0f, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
+                
+                if (Mathf.Abs(m_rigidBody.velocity.x) < 1.0f)
+                {
+                    m_rigidBody.velocity = new Vector3(0.0f, m_rigidBody.velocity.y, 0.0f);
+                }
+            }
             else if (m_Stats.isInAir)
             {
                 m_rigidBody.AddForce(new Vector2(-m_rigidBody.velocity.x * m_Stats.m_TotalStats.m_AirFriction, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
