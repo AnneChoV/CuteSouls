@@ -17,6 +17,7 @@ public class MovementManager : MonoBehaviour
 
     void OnValidate()
     {
+        isfacingRight = true;
         m_Stats = GetComponent<CharacterStats>();
         m_rigidBody = GetComponent<Rigidbody2D>();
         // m_rigidBody.gravityScale = m_Stats.m_TotalStats.m_jumpSpeedGravityScale;
@@ -31,7 +32,7 @@ public class MovementManager : MonoBehaviour
 
     public void HandleMoveLeft()
     {
-        isfacingRight = false;
+
         float efficacy;
         if (m_rigidBody.velocity.x > 0)
         {
@@ -43,7 +44,6 @@ public class MovementManager : MonoBehaviour
         }
         if (m_Stats.IsGrounded)   //If grounded
         {
-            transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * -1 * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
         }
         else if (m_Stats.isInAir)
@@ -63,12 +63,17 @@ public class MovementManager : MonoBehaviour
         else
         {
             Debug.Log("This case should never be reached. Something's wrong.");
+            return;
+        }
+        if (isfacingRight == true)
+        {
+            isfacingRight = false;
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
     }
 
     public void HandleMoveRight()
     {
-        isfacingRight = true;
         float efficacy;
         if (m_rigidBody.velocity.x < 0)
         {
@@ -81,7 +86,6 @@ public class MovementManager : MonoBehaviour
 
         if (m_Stats.IsGrounded)   //If grounded
         {
-            transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
         }
         else if (m_Stats.isInAir)
@@ -99,6 +103,13 @@ public class MovementManager : MonoBehaviour
         else
         {
             Debug.Log("This case should never be reached. Something's wrong.");
+            return;
+        }
+
+        if (isfacingRight == false)
+        {
+            isfacingRight = true;
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
     }
 
