@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerInputManager : MonoBehaviour {       //This class is used by player to handle input only.
 
 
-    [Header("KeyCodes")] 
+    [Header("KeyCodes")]
     public KeyCode k_LeftKey = KeyCode.A;
     public KeyCode k_RightKey = KeyCode.D;
     public KeyCode k_JumpKey = KeyCode.W;

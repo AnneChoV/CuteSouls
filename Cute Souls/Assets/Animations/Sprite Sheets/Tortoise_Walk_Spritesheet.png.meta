@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: c565619777715ae4ab27b903f64f6bfc
-timeCreated: 1490924129
+guid: 41b335998a6cce3439c00b00b536fc94
+timeCreated: 1490923436
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Mouse_Run_Spritesheet_0
-    21300002: Mouse_Run_Spritesheet_1
-    21300004: Mouse_Run_Spritesheet_2
-    21300006: Mouse_Run_Spritesheet_3
-    21300008: Mouse_Run_Spritesheet_4
-    21300010: Mouse_Run_Spritesheet_5
-    21300012: Mouse_Run_Spritesheet_6
-    21300014: Mouse_Run_Spritesheet_7
+    21300000: Tortoise_Walk_Spritesheet_0
+    21300002: Tortoise_Walk_Spritesheet_1
+    21300004: Tortoise_Walk_Spritesheet_2
+    21300006: Tortoise_Walk_Spritesheet_3
+    21300008: Tortoise_Walk_Spritesheet_4
+    21300010: Tortoise_Walk_Spritesheet_5
+    21300012: Tortoise_Walk_Spritesheet_6
+    21300014: Tortoise_Walk_Spritesheet_7
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -44,7 +44,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
@@ -78,106 +78,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mouse_Run_Spritesheet_0
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 6786
-        width: 1009
-        height: 948
-      alignment: 9
-      pivot: {x: 0.5, y: 0.55}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Mouse_Run_Spritesheet_1
+      name: Tortoise_Walk_Spritesheet_0
       rect:
         serializedVersion: 2
         x: 17
-        y: 5820
-        width: 1009
-        height: 948
-      alignment: 9
-      pivot: {x: 0.5, y: 0.55}
+        y: 8619
+        width: 1192
+        height: 1104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Mouse_Run_Spritesheet_2
+      name: Tortoise_Walk_Spritesheet_1
       rect:
         serializedVersion: 2
-        x: 22
-        y: 4812
-        width: 1009
-        height: 948
-      alignment: 9
-      pivot: {x: 0.5, y: 0.55}
+        x: 37
+        y: 7389
+        width: 1200
+        height: 1094
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Mouse_Run_Spritesheet_3
+      name: Tortoise_Walk_Spritesheet_2
       rect:
         serializedVersion: 2
-        x: 26
-        y: 3878
-        width: 1009
-        height: 948
-      alignment: 9
-      pivot: {x: 0.5, y: 0.55}
+        x: 57
+        y: 6138
+        width: 1202
+        height: 1107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Mouse_Run_Spritesheet_4
+      name: Tortoise_Walk_Spritesheet_3
       rect:
         serializedVersion: 2
-        x: 41
-        y: 2911
-        width: 1009
-        height: 948
-      alignment: 9
-      pivot: {x: 0.5, y: 0.55}
+        x: 38
+        y: 4940
+        width: 1204
+        height: 1095
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Mouse_Run_Spritesheet_5
+      name: Tortoise_Walk_Spritesheet_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1921
-        width: 1009
-        height: 948
-      alignment: 9
-      pivot: {x: 0.5, y: 0.55}
+        x: 31
+        y: 3735
+        width: 1197
+        height: 1090
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Mouse_Run_Spritesheet_6
+      name: Tortoise_Walk_Spritesheet_5
       rect:
         serializedVersion: 2
-        x: 22
-        y: 981
-        width: 1009
-        height: 948
-      alignment: 9
-      pivot: {x: 0.5, y: 0.55}
+        x: 38
+        y: 2490
+        width: 1209
+        height: 1114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Mouse_Run_Spritesheet_7
+      name: Tortoise_Walk_Spritesheet_6
       rect:
         serializedVersion: 2
-        x: 19
-        y: 37
-        width: 1009
-        height: 948
-      alignment: 9
-      pivot: {x: 0.5, y: 0.55}
+        x: 56
+        y: 1239
+        width: 1203
+        height: 1132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tortoise_Walk_Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 46
+        width: 1200
+        height: 1119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

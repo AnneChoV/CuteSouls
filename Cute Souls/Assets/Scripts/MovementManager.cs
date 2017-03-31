@@ -14,6 +14,8 @@ public class MovementManager : MonoBehaviour
     public Rigidbody2D m_rigidBody;
     [ReadOnly]
     public CharacterStats m_Stats;
+    [ReadOnly]
+    public Animator m_animator;
 
     void OnValidate()
     {
@@ -21,6 +23,7 @@ public class MovementManager : MonoBehaviour
         m_Stats = GetComponent<CharacterStats>();
         m_rigidBody = GetComponent<Rigidbody2D>();
         isfacingRight = true;
+        m_animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -32,7 +35,6 @@ public class MovementManager : MonoBehaviour
 
     public void HandleMoveLeft()
     {
-
         float efficacy;
         if (m_rigidBody.velocity.x > 0)
         {
@@ -45,6 +47,7 @@ public class MovementManager : MonoBehaviour
         if (m_Stats.IsGrounded)   //If grounded
         {
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * -1 * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
+            m_animator.SetBool("IsMoving", true);
         }
         else if (m_Stats.isInAir)
         {
@@ -74,8 +77,6 @@ public class MovementManager : MonoBehaviour
 
     public void HandleMoveRight()
     {
-
-
         float efficacy;
         if (m_rigidBody.velocity.x < 0)
         {
@@ -89,6 +90,7 @@ public class MovementManager : MonoBehaviour
         if (m_Stats.IsGrounded)   //If grounded
         {
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
+            m_animator.SetBool("IsMoving", true);
         }
         else if (m_Stats.isInAir)
         {
@@ -120,7 +122,10 @@ public class MovementManager : MonoBehaviour
         float efficacy = Mathf.Abs(m_rigidBody.velocity.x) - m_Stats.m_TotalStats.m_groundFriction;
         {
             if (m_Stats.IsGrounded)
+            {
                 m_rigidBody.AddForce(new Vector2(-m_rigidBody.velocity.x * m_Stats.m_TotalStats.m_groundFriction, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
+                m_animator.SetBool("IsMoving", false);
+            }
             else if (m_Stats.isInAir)
             {
                 m_rigidBody.AddForce(new Vector2(-m_rigidBody.velocity.x * m_Stats.m_TotalStats.m_AirFriction, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);

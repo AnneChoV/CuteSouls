@@ -7,7 +7,7 @@ public class Archetype : MonoBehaviour {
     public StatsTemplate m_classDefaultStats;
     public Ability[] m_abilities;
     public BehaviourAbstract[] m_behaviours;
-
+    public RuntimeAnimatorController animatorController;
 
 
 
