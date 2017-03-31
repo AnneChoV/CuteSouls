@@ -6,15 +6,16 @@ public class Slimey : AbstractEnemy
 {
     public GameObject SlimeyProjectile;
 
+    public CircleCollider2D circle;
 
     public float timeBetweenUseAbilityZero;
     [ReadOnly] private float abilityZeroTimer;
 
-
     private void Start()
     {
         m_currentBehaviour = archetype.m_behaviours[1];
-      //  archetype.m_abilities[1].UseAbility();
+        //  archetype.m_abilities[1].UseAbility();
+
     }
     public override void Update()
     {
@@ -29,10 +30,30 @@ public class Slimey : AbstractEnemy
            // archetype.m_abilities[0].UseAbility(m_playerPosition, transform.position, SlimeyProjectile);
             abilityZeroTimer = timeBetweenUseAbilityZero;
         }
+
     }
 
     private void OnValidate()
     {
         abilityZeroTimer = timeBetweenUseAbilityZero;
+        circle = GetComponent<CircleCollider2D>();
+    }
+
+
+    //private void OnTriggerStay2D(Collider2D collision) //lose health
+    //{
+    //    if (collision.gameObject.name == "Player")
+    //    {
+    //        Debug.Log("Ssdfdsdfssdfdsf");
+    //    }
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            Debug.Log("Sdsf");
+            Physics2D.IgnoreCollision(collision, GetComponent<Collider2D>(), true);
+        }
     }
 }
