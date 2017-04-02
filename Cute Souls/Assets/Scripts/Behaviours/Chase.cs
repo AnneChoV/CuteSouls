@@ -11,7 +11,7 @@ public class Chase : BehaviourAbstract
         //Debug.Log(movementDirection.x);
         //Debug.Log(m_playerPosition);
 
-        //&& NotAtEdge()
+        Debug.Log("oasda");
         if (movementDirection.x > 0 && NotAtEdge())
         {
             Debug.Log("Moving right");

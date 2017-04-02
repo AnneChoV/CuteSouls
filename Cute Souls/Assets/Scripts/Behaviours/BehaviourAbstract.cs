@@ -11,6 +11,8 @@ public abstract class BehaviourAbstract : MonoBehaviour
     [ReadOnly] public GameObject m_player;
     [ReadOnly] public Vector3 m_playerPosition;
 
+    public LayerMask GroundLayer;
+
 
     private void OnValidate()
     {
@@ -30,7 +32,8 @@ public abstract class BehaviourAbstract : MonoBehaviour
 
     public virtual bool NotAtEdge()
     {
-        bool notAtEdge = Physics2D.OverlapCircle(transform.parent.Find("EdgeCheck").position, 0.1f);
+        bool notAtEdge = Physics2D.OverlapCircle(transform.parent.Find("EdgeCheck").position, 0.5f, GroundLayer);
+        Debug.Log(notAtEdge);
         return notAtEdge;
     }
 

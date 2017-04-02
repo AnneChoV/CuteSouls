@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementManager : MonoBehaviour {  //This is a class shared by player and enemies to handle movements.
+public class MovementManager : MonoBehaviour
+{  //This is a class shared by player and enemies to handle movements.
 
     [ReadOnly]
     public bool isfacingRight;
@@ -13,12 +14,16 @@ public class MovementManager : MonoBehaviour {  //This is a class shared by play
     public Rigidbody2D m_rigidBody;
     [ReadOnly]
     public CharacterStats m_Stats;
+    [ReadOnly]
+    public Animator m_animator;
 
     void OnValidate()
     {
+        isfacingRight = true;
         m_Stats = GetComponent<CharacterStats>();
         m_rigidBody = GetComponent<Rigidbody2D>();
-       // m_rigidBody.gravityScale = m_Stats.m_TotalStats.m_jumpSpeedGravityScale;
+        isfacingRight = true;
+        m_animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -30,7 +35,6 @@ public class MovementManager : MonoBehaviour {  //This is a class shared by play
 
     public void HandleMoveLeft()
     {
-        isfacingRight = false;
         float efficacy;
         if (m_rigidBody.velocity.x > 0)
         {
@@ -43,6 +47,7 @@ public class MovementManager : MonoBehaviour {  //This is a class shared by play
         if (m_Stats.IsGrounded)   //If grounded
         {
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * -1 * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
+            m_animator.SetBool("IsMoving", true);
         }
         else if (m_Stats.isInAir)
         {
@@ -61,12 +66,17 @@ public class MovementManager : MonoBehaviour {  //This is a class shared by play
         else
         {
             Debug.Log("This case should never be reached. Something's wrong.");
+            return;
+        }
+        if (isfacingRight == true)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            isfacingRight = false;
         }
     }
 
     public void HandleMoveRight()
     {
-        isfacingRight = true;
         float efficacy;
         if (m_rigidBody.velocity.x < 0)
         {
@@ -80,6 +90,7 @@ public class MovementManager : MonoBehaviour {  //This is a class shared by play
         if (m_Stats.IsGrounded)   //If grounded
         {
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
+            m_animator.SetBool("IsMoving", true);
         }
         else if (m_Stats.isInAir)
         {
@@ -96,6 +107,12 @@ public class MovementManager : MonoBehaviour {  //This is a class shared by play
         else
         {
             Debug.Log("This case should never be reached. Something's wrong.");
+            return;
+        }
+        if (isfacingRight == false)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            isfacingRight = true;
         }
     }
 
@@ -105,7 +122,10 @@ public class MovementManager : MonoBehaviour {  //This is a class shared by play
         float efficacy = Mathf.Abs(m_rigidBody.velocity.x) - m_Stats.m_TotalStats.m_groundFriction;
         {
             if (m_Stats.IsGrounded)
+            {
                 m_rigidBody.AddForce(new Vector2(-m_rigidBody.velocity.x * m_Stats.m_TotalStats.m_groundFriction, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
+                m_animator.SetBool("IsMoving", false);
+            }
             else if (m_Stats.isInAir)
             {
                 m_rigidBody.AddForce(new Vector2(-m_rigidBody.velocity.x * m_Stats.m_TotalStats.m_AirFriction, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);

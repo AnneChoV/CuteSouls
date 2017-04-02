@@ -26,9 +26,8 @@ public abstract class AbstractEnemy : MonoBehaviour
         return Vector3.Distance(transform.position, _position);
     }
 
-    protected void Update()
+    public virtual void Update()
     {
-        
             Debug.Log("Updating players psosition.");
             if (m_player != null)
             {
