@@ -266,7 +266,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.35247132}
   serializedVersion: 2
-  m_Radius: 5.8249993
+  m_Radius: 7.6
 --- !u!4 &255825930 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4875014131222214, guid: 9b850ff4ac23a6e44a752bc685c8e1b0,
@@ -876,7 +876,6 @@ GameObject:
   - component: {fileID: 1334933792}
   - component: {fileID: 1334933790}
   - component: {fileID: 1334933793}
-  - component: {fileID: 1334933797}
   - component: {fileID: 1334933796}
   - component: {fileID: 1334933795}
   - component: {fileID: 1334933794}
@@ -886,6 +885,7 @@ GameObject:
   - component: {fileID: 1334933791}
   - component: {fileID: 1334933801}
   - component: {fileID: 1334933802}
+  - component: {fileID: 1334933803}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -939,6 +939,8 @@ MonoBehaviour:
   jumpsAvailable: 3
   m_defaultStats:
     m_Health: 100
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 1
     m_maxSpeed: 24
     m_Acceleration: 35
     m_airAcceleration: 27
@@ -949,6 +951,8 @@ MonoBehaviour:
     m_jumpsTotal: 3
   m_equipmentStats:
     m_Health: 0
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 0
     m_maxSpeed: 0
     m_Acceleration: 0
     m_airAcceleration: 0
@@ -959,13 +963,15 @@ MonoBehaviour:
     m_jumpsTotal: 0
   m_TotalStats:
     m_Health: 100
-    m_maxSpeed: 24
-    m_Acceleration: 35
-    m_airAcceleration: 27
-    m_groundFriction: 40
-    m_AirFriction: 20
-    m_jumpHeight: 16
-    m_jumpSpeedGravityScale: 5
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 1
+    m_maxSpeed: 20
+    m_Acceleration: 27.4
+    m_airAcceleration: 43
+    m_groundFriction: 146
+    m_AirFriction: 5
+    m_jumpHeight: 15.2
+    m_jumpSpeedGravityScale: 6
     m_jumpsTotal: 3
   IsGrounded: 0
   IsOnLeftWall: 0
@@ -1074,21 +1080,6 @@ MonoBehaviour:
   m_stats: {fileID: 1334933791}
   m_attackMoves: {fileID: 0}
   m_movementManager: {fileID: 1334933795}
---- !u!70 &1334933797
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1334933789}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 63eeddf488c762d4c9a3969bfc59924c, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 10, y: 2.56}
-  m_Direction: 0
 --- !u!114 &1334933798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1102,19 +1093,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_classDefaultStats:
     m_Health: 0
-    m_maxSpeed: 48.6
-    m_Acceleration: 100
-    m_airAcceleration: 100
-    m_groundFriction: 7.3
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 0
+    m_maxSpeed: 19.7
+    m_Acceleration: 28.8
+    m_airAcceleration: 43.1
+    m_groundFriction: 146.4
     m_AirFriction: 4.9
-    m_jumpHeight: 50
-    m_jumpSpeedGravityScale: 16
-    m_jumpsTotal: 100
+    m_jumpHeight: 10.6
+    m_jumpSpeedGravityScale: 3
+    m_jumpsTotal: 1
   m_abilities:
   - {fileID: 41155882}
   m_behaviours: []
   m_EquipmentStats:
     m_Health: 100
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 1
     m_maxSpeed: 0
     m_Acceleration: 0
     m_airAcceleration: 0
@@ -1123,6 +1118,18 @@ MonoBehaviour:
     m_jumpHeight: 0
     m_jumpSpeedGravityScale: 0
     m_jumpsTotal: 0
+  m_totalStats:
+    m_Health: 100
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 1
+    m_maxSpeed: 19.7
+    m_Acceleration: 28.8
+    m_airAcceleration: 43.1
+    m_groundFriction: 146.4
+    m_AirFriction: 4.9
+    m_jumpHeight: 10.6
+    m_jumpSpeedGravityScale: 3
+    m_jumpsTotal: 1
 --- !u!114 &1334933799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1136,27 +1143,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_classDefaultStats:
     m_Health: 100
-    m_maxSpeed: 24
-    m_Acceleration: 35
-    m_airAcceleration: 27
-    m_groundFriction: 40
-    m_AirFriction: 20
-    m_jumpHeight: 16
-    m_jumpSpeedGravityScale: 2.5
-    m_jumpsTotal: 3
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 1
+    m_maxSpeed: 20
+    m_Acceleration: 27.4
+    m_airAcceleration: 43
+    m_groundFriction: 146
+    m_AirFriction: 5
+    m_jumpHeight: 7
+    m_jumpSpeedGravityScale: 3
+    m_jumpsTotal: 2
   m_abilities:
   - {fileID: 41155882}
   m_behaviours: []
   m_EquipmentStats:
     m_Health: 0
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 0
     m_maxSpeed: 0
     m_Acceleration: 0
     m_airAcceleration: 0
     m_groundFriction: 0
     m_AirFriction: 0
-    m_jumpHeight: 0
-    m_jumpSpeedGravityScale: 0
-    m_jumpsTotal: 0
+    m_jumpHeight: 8.2
+    m_jumpSpeedGravityScale: 3
+    m_jumpsTotal: 1
+  m_totalStats:
+    m_Health: 100
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 1
+    m_maxSpeed: 20
+    m_Acceleration: 27.4
+    m_airAcceleration: 43
+    m_groundFriction: 146
+    m_AirFriction: 5
+    m_jumpHeight: 15.2
+    m_jumpSpeedGravityScale: 6
+    m_jumpsTotal: 3
 --- !u!114 &1334933800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,6 +1193,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_classDefaultStats:
     m_Health: 100
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 1
+    m_maxSpeed: 8.7
+    m_Acceleration: 31.2
+    m_airAcceleration: 10.2
+    m_groundFriction: 99.1
+    m_AirFriction: 10.6
+    m_jumpHeight: 7.7
+    m_jumpSpeedGravityScale: 1.4
+    m_jumpsTotal: 11
+  m_abilities:
+  - {fileID: 41155882}
+  m_behaviours: []
+  m_EquipmentStats:
+    m_Health: 0
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 0
     m_maxSpeed: 0
     m_Acceleration: 0
     m_airAcceleration: 0
@@ -1178,19 +1218,18 @@ MonoBehaviour:
     m_jumpHeight: 0
     m_jumpSpeedGravityScale: 0
     m_jumpsTotal: 0
-  m_abilities:
-  - {fileID: 41155882}
-  m_behaviours: []
-  m_EquipmentStats:
-    m_Health: 0
-    m_maxSpeed: 24
-    m_Acceleration: 35
-    m_airAcceleration: 27
-    m_groundFriction: 40
-    m_AirFriction: 20
-    m_jumpHeight: 15
-    m_jumpSpeedGravityScale: 2.5
-    m_jumpsTotal: 22
+  m_totalStats:
+    m_Health: 100
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 1
+    m_maxSpeed: 8.7
+    m_Acceleration: 31.2
+    m_airAcceleration: 10.2
+    m_groundFriction: 99.1
+    m_AirFriction: 10.6
+    m_jumpHeight: 7.7
+    m_jumpSpeedGravityScale: 1.4
+    m_jumpsTotal: 11
 --- !u!58 &1334933801
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1363,6 +1402,23 @@ PolygonCollider2D:
       - {x: -0.45559573, y: -4.9125104}
       - {x: 0.13865957, y: -4.5163403}
       - {x: 0.5348298, y: -4.2390213}
+--- !u!95 &1334933803
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1334933789}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1404499852
 Prefab:
   m_ObjectHideFlags: 0
@@ -1930,6 +1986,26 @@ Prefab:
         type: 2}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212553034383542824, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_classDefaultStats.m_DamageToOtherUponCollision
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_classDefaultStats.m_Health
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_classDefaultStats.m_damageMultiplier
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac70216d61aca87468f9d61df2597e71, type: 2}

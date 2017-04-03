@@ -5,8 +5,15 @@ using UnityEngine;
 public class Dash : Ability
 {
 
+
     public override void UseAbility()
     {
         GetComponentInParent<Rigidbody2D>().AddForce(Vector3.left * 10, ForceMode2D.Impulse);
+
+    }
+
+    public override void UseAbility(float _damage)
+    {
+        //damage = _damage;
     }
 }

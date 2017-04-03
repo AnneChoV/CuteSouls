@@ -14,7 +14,7 @@ public abstract class Ability : MonoBehaviour {
     public abstract void UseAbility();  //Abstract forces all abilities to have a UseAbility function.
     public virtual void UseAbility(Vector3 _targetPosition) { }
     public virtual void UseAbility(Vector3 _targetPosition, Vector3 _instantiationPosition, GameObject _instantiationObject) { }
-    public virtual void UseAbility(float AoERange) { }
+    public virtual void UseAbility(float _damage) { }
 
 
     //public bool CheckIfPlayerNearby()
