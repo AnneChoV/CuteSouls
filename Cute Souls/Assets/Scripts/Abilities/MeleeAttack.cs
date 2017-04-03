@@ -15,7 +15,7 @@ public class MeleeAttack : Ability
         playerInRange = Physics2D.OverlapCircle(transform.parent.position, playerRange, playerLayer);
         if (playerInRange)
         {
-            playerInRange.TakeDamage(damage);
+            //playerInRange.TakeDamage(damage);
             Debug.Log("Enemy hit the player!");
         }
     }
