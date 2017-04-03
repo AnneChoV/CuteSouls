@@ -48,4 +48,15 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     {
         m_TotalStats = m_currentProtoclass.m_totalStats;    //THIS MIGHT CAUSE LAG.
     }
+
+    public void UpdatePercentageHealth()
+    {
+        m_percentageHealth = m_currentHealth / m_MaxHealth * 100;
+    }
+
+    public void TakeDamage(float _damage)
+    {
+        m_currentHealth -= _damage;
+        UpdatePercentageHealth();
+    }
 }

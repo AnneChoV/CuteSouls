@@ -29,7 +29,6 @@ public struct StatsTemplate {
     [Range(0, 100)]
     public int m_jumpsTotal;
 
-
     public StatsTemplate Add(StatsTemplate _AddedTemplate)
     {
         StatsTemplate totalStats = new StatsTemplate();
