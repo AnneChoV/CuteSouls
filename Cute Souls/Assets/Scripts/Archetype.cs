@@ -14,8 +14,13 @@ public class Archetype : MonoBehaviour {
     public StatsTemplate m_totalStats;
 
     public float immunityFramesNumber;
-    [ReadOnly] public float timeUntilNextDamageTaken;
+    [ReadOnly]
+    public float timeUntilNextDamageTaken;
 
+    public float blockingTimer;
+    public float timeUntilBlockRunsOut;
+    public float timeBetweenBlocks;
+    public float timeUntilNextBlock;
 
     private void OnValidate()
     {
@@ -49,5 +54,8 @@ public class Archetype : MonoBehaviour {
         {
             //CHARACTER IS IMMUNE TO ALL DAMAGE. MAKE IT BLINK A DIFFERENT COLOUR AND/OR PLAY A SOUND!
         }
-    }
+
+        timeUntilBlockRunsOut -= Time.deltaTime;
+        timeUntilNextBlock -= Time.deltaTime;
+}
 }
