@@ -6,7 +6,7 @@ public class ShootProjectile : Ability
 {
     [ReadOnly] public Vector3 m_targetPosition;
     [ReadOnly] public Vector3 m_instantiationPosition;
-    [ReadOnly] public GameObject m_instantiationObject;
+    public GameObject m_instantiationObject;
 
     public override void UseAbility()
     {

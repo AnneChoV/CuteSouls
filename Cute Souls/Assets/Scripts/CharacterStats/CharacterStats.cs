@@ -56,7 +56,13 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
 
     public void TakeDamage(float _damage)
     {
-        m_currentHealth -= _damage;
-        UpdatePercentageHealth();
+        if (m_currentProtoclass.timeUntilNextDamageTaken <= 0.0f)
+        {
+            Debug.Log(transform.name + " took " + _damage + " damage.");
+            m_currentHealth -= _damage;
+            UpdatePercentageHealth();
+
+            m_currentProtoclass.timeUntilNextDamageTaken = m_currentProtoclass.immunityFramesNumber;
+        }
     }
 }

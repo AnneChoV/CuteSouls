@@ -28,11 +28,9 @@ public abstract class AbstractEnemy : MonoBehaviour
 
     public virtual void Update()
     {
-            Debug.Log("Updating players psosition.");
             if (m_player != null)
             {
                 m_playerPosition = m_player.transform.position; //if this is displaying an error that it cant find it, check if any of the enemies have a reference to the player as proof it's still working. Unity dumb.
-                Debug.Log("Updating players psosition.");
                 m_distanceFromPlayer = GetDistanceFromTarget(m_playerPosition);
             }
         

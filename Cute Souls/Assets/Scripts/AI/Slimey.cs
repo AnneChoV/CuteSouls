@@ -26,7 +26,7 @@ public class Slimey : AbstractEnemy
 
         if (abilityZeroTimer <= 0.0f)
         {
-            Debug.Log(m_playerPosition);
+          //  Debug.Log(m_playerPosition);
            // archetype.m_abilities[0].UseAbility(m_playerPosition, transform.position, SlimeyProjectile);
             abilityZeroTimer = timeBetweenUseAbilityZero;
         }
@@ -36,23 +36,5 @@ public class Slimey : AbstractEnemy
     {
         abilityZeroTimer = timeBetweenUseAbilityZero;
         circle = GetComponent<CircleCollider2D>();
-    }
-
-
-    private void OnTriggerStay2D(Collider2D collision) //lose health
-    {
-        if (collision.gameObject.name == "Player")
-        {
-            collision.GetComponent<CharacterStats>().m_currentHealth -= archetype.m_totalStats.m_DamageToOtherUponCollision;
-            Debug.Log("Character lost health.");
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Player")
-        {
-            Physics2D.IgnoreCollision(collision, GetComponent<Collider2D>(), true);
-        }
     }
 }

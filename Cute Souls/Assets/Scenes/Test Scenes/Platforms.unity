@@ -210,6 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 41155881}
   - component: {fileID: 41155882}
+  - component: {fileID: 41155883}
   m_Layer: 9
   m_Name: AbilitiesContainer
   m_TagString: Untagged
@@ -242,6 +243,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterStats: {fileID: 1334933791}
+  movementManager: {fileID: 330781322}
+--- !u!114 &41155883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 41155880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58a9a2f68dd2aa46992544c5f15808d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterStats: {fileID: 1334933791}
+  movementManager: {fileID: 1334933795}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &132393854 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4013632335205954, guid: b78e5b25732891c41aa02508cdb1bce5,
@@ -812,6 +830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterStats: {fileID: 943130143}
+  movementManager: {fileID: 330781322}
   m_targetPosition: {x: 0, y: 0, z: 0}
   m_instantiationPosition: {x: 0, y: 0, z: 0}
   m_instantiationObject: {fileID: 0}
@@ -1073,10 +1092,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   k_LeftKey: 97
+  k_LeftKey2: 276
   k_RightKey: 100
+  k_RightKey2: 275
   k_JumpKey: 119
+  k_JumpKey2: 273
   k_ClassSwapKey: 115
-  k_SkillKey: 32
+  k_ClassSwapKey2: 274
+  k_MeleeAttack: 122
+  k_ClassSkill: 120
   m_stats: {fileID: 1334933791}
   m_attackMoves: {fileID: 0}
   m_movementManager: {fileID: 1334933795}
@@ -1105,6 +1129,7 @@ MonoBehaviour:
     m_jumpsTotal: 1
   m_abilities:
   - {fileID: 41155882}
+  - {fileID: 41155883}
   m_behaviours: []
   m_EquipmentStats:
     m_Health: 100
@@ -1130,6 +1155,8 @@ MonoBehaviour:
     m_jumpHeight: 10.6
     m_jumpSpeedGravityScale: 3
     m_jumpsTotal: 1
+  immunityFramesNumber: 0
+  timeUntilNextDamageTaken: 0
 --- !u!114 &1334933799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1155,6 +1182,7 @@ MonoBehaviour:
     m_jumpsTotal: 2
   m_abilities:
   - {fileID: 41155882}
+  - {fileID: 41155883}
   m_behaviours: []
   m_EquipmentStats:
     m_Health: 0
@@ -1180,6 +1208,8 @@ MonoBehaviour:
     m_jumpHeight: 15.2
     m_jumpSpeedGravityScale: 6
     m_jumpsTotal: 3
+  immunityFramesNumber: 0
+  timeUntilNextDamageTaken: 0
 --- !u!114 &1334933800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1205,6 +1235,7 @@ MonoBehaviour:
     m_jumpsTotal: 11
   m_abilities:
   - {fileID: 41155882}
+  - {fileID: 41155883}
   m_behaviours: []
   m_EquipmentStats:
     m_Health: 0
@@ -1230,6 +1261,8 @@ MonoBehaviour:
     m_jumpHeight: 7.7
     m_jumpSpeedGravityScale: 1.4
     m_jumpsTotal: 11
+  immunityFramesNumber: 0
+  timeUntilNextDamageTaken: 0
 --- !u!58 &1334933801
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2006,6 +2039,66 @@ Prefab:
         type: 2}
       propertyPath: m_classDefaultStats.m_damageMultiplier
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_totalStats.m_Health
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_totalStats.m_DamageToOtherUponCollision
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_totalStats.m_damageMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_totalStats.m_maxSpeed
+      value: 5.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_totalStats.m_Acceleration
+      value: 15.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_totalStats.m_airAcceleration
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_totalStats.m_groundFriction
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_totalStats.m_AirFriction
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_totalStats.m_jumpHeight
+      value: 9.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_totalStats.m_jumpSpeedGravityScale
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_totalStats.m_jumpsTotal
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341933308303726, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: immunityFramesNumber
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac70216d61aca87468f9d61df2597e71, type: 2}
