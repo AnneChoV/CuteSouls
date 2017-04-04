@@ -10,15 +10,14 @@ public class SoundManager : MonoBehaviour
     public AudioSource efxSource;
 
     public AudioClip mainMenu;
-    public AudioClip caveTheme;
-    public AudioClip fireplaceTheme;
+    public AudioClip gameTheme;
+    public AudioClip gameTheme2;
 
-    public AudioClip rockFall;
-    public AudioClip rockFall2;
-    public AudioClip bagSearch;
-    public AudioClip punch;
-    public AudioClip startFire;
-    public AudioClip digging;
+    public AudioClip powerUp;
+    public AudioClip umbrellaHit;
+    public AudioClip spikeThrow;
+    public AudioClip shieldBlock;
+    public AudioClip jump;
 
 
     private AudioClip selectedTheme;
@@ -29,7 +28,7 @@ public class SoundManager : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-        if (SceneManager.GetActiveScene().name == "MainMenu")
+        if (SceneManager.GetActiveScene().name == "Main Menu")
         {
             selectedTheme = mainMenu;
         }
@@ -37,7 +36,9 @@ public class SoundManager : MonoBehaviour
         efxSource = GameObject.Find("Sound Manager").GetComponent<AudioSource>();
         themeSource = GameObject.Find("Game Manager").GetComponent<AudioSource>();
 
-        themeSource.PlayOneShot(selectedTheme, 0.5f);
+        //themeSource.PlayOneShot(selectedTheme, 0.5f);
+        themeSource.clip = selectedTheme;
+        themeSource.Play();
 
         //Check if there is already an instance of SoundManager
         if (instance == null)
@@ -55,51 +56,30 @@ public class SoundManager : MonoBehaviour
 
     public void playTheme(string sceneName)
     {
-        if (sceneName == "PrototypeCave")
+        if (sceneName == "Intro_1")
         {
-            selectedTheme = caveTheme;
-            themeSource.PlayOneShot(selectedTheme);
-        }
-
-        if (sceneName == "IntroScene")
-        {
-            efxSource.PlayOneShot(rockFall, 0.6f);
-            efxSource.PlayOneShot(rockFall2, 0.6f);
-            selectedTheme = caveTheme;
+            selectedTheme = gameTheme;
             themeSource.clip = selectedTheme;
-            themeSource.PlayDelayed(4.0f);
-            themeSource.volume = 0.1f;
-        }
-
-        
-        if (sceneName == "Test_Campfire")
-        {
-            themeSource.Stop();
-            selectedTheme = fireplaceTheme;
-            themeSource.PlayOneShot(selectedTheme);
+            themeSource.Play();
         }
     }
 
-    public void Digging()
+    public void Jump()
     {
-        efxSource.PlayOneShot(digging);
+        efxSource.PlayOneShot(jump);
     }
-    public void BagSearch()
+    public void UmbrellaHit()
     {
-        efxSource.PlayOneShot(bagSearch, 1.9f);
-    }
-
-    public void Punch()
-    {
-        efxSource.PlayOneShot(punch);
+        efxSource.PlayOneShot(umbrellaHit);
     }
 
-    public void StartFire()
+    public void SpikeThrow()
     {
-        efxSource.PlayOneShot(startFire);
-        selectedTheme = fireplaceTheme;
-        themeSource.clip = selectedTheme;
-        themeSource.PlayDelayed(2.0f);
-        themeSource.volume = 0.6f;
+        efxSource.PlayOneShot(spikeThrow);
+    }
+
+    public void ShieldBlock()
+    {
+        efxSource.PlayOneShot(shieldBlock);
     }
 }
