@@ -34,21 +34,6 @@ public class SoundManager : MonoBehaviour
             selectedTheme = mainMenu;
         }
 
-        if (SceneManager.GetActiveScene().name == "PrototypeCave")
-        {
-            selectedTheme = caveTheme;
-        }
-
-        if (SceneManager.GetActiveScene().name == "IntroScene")
-        {
-            selectedTheme = caveTheme;
-        }
-
-        if (SceneManager.GetActiveScene().name == "Test_Campfire")
-        {
-            selectedTheme = fireplaceTheme;
-        }
-
         efxSource = GameObject.Find("Sound Manager").GetComponent<AudioSource>();
         themeSource = GameObject.Find("Game Manager").GetComponent<AudioSource>();
 
