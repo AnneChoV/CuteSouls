@@ -14,17 +14,31 @@ public class MovementManager : MonoBehaviour
     public Rigidbody2D m_rigidBody;
     [ReadOnly]
     public CharacterStats m_Stats;
+    public SpriteRenderer spriteRenderer;
 
     void OnValidate()
     {
         m_Stats = GetComponent<CharacterStats>();
         m_rigidBody = GetComponent<Rigidbody2D>();
         isfacingRight = true;
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()
     {
         m_rigidBody.gravityScale = m_Stats.m_TotalStats.m_jumpSpeedGravityScale;    //FIND BETTER WAY?
+        if (m_Stats.m_currentProtoclass.m_totalStats.doesGetStuckOnWalls == true)
+        {
+            if (m_Stats.IsOnLeftWall || m_Stats.IsOnRightWall)
+            {
+                //We can't slow it. Its too hard :<
+                m_rigidBody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+            }
+            else
+            {
+                m_rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -51,12 +65,10 @@ public class MovementManager : MonoBehaviour
         }
         else if (m_Stats.IsOnLeftWall)
         {
-            Debug.Log("What should we do if hes on wall?");
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * -1 * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
         }
         else if (m_Stats.IsOnRightWall)
         {
-            Debug.Log("What should we do if hes on wall?");
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * -1 * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
         }
         else
@@ -64,11 +76,8 @@ public class MovementManager : MonoBehaviour
             Debug.Log("This case should never be reached. Something's wrong.");
             return;
         }
-        if (isfacingRight == true)
-        {
-            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-            isfacingRight = false;
-        }
+        isfacingRight = false;        
+        spriteRenderer.flipX = true;
     }
 
     public void HandleMoveRight()
@@ -104,11 +113,10 @@ public class MovementManager : MonoBehaviour
             Debug.Log("This case should never be reached. Something's wrong.");
             return;
         }
-        if (isfacingRight == false)
-        {
-            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+
+            spriteRenderer.flipX = false;
             isfacingRight = true;
-        }
+        
     }
 
 

@@ -22,6 +22,8 @@ public class Archetype : MonoBehaviour {
     public float timeBetweenBlocks;
     public float timeUntilNextBlock;
 
+    public int m_currentClassSkillTier; //USED FOR PLAYER ONLY
+
     private void OnValidate()
     {
         m_abilities = GetComponentsInChildren<Ability>();
@@ -57,5 +59,12 @@ public class Archetype : MonoBehaviour {
 
         timeUntilBlockRunsOut -= Time.deltaTime;
         timeUntilNextBlock -= Time.deltaTime;
-}
+    }
+
+    public virtual void EnvokeDeath()
+    {
+        Destroy(gameObject);
+
+        //DEATH ANIMATION. DEATH PARTICLES. DEATH SOULS RELEASED. DIEDIEDIE SOUND.
+    }
 }

@@ -4,26 +4,42 @@ using UnityEngine;
 
 public class FloorColliderTrigger : MonoBehaviour
 {
+    
     void OnTriggerEnter2D(Collider2D other)
     {
-        other.GetComponent<CharacterStats>().IsGrounded = true;
-        other.GetComponent<CharacterStats>().isInAir = false;
-        other.GetComponent<CharacterStats>().jumpsAvailable = other.GetComponent<CharacterStats>().m_TotalStats.m_jumpsTotal;
+        CharacterStats currentCharacterStats;
+        currentCharacterStats = other.GetComponent<CharacterStats>();
+        if (currentCharacterStats)
+        {
+            currentCharacterStats.IsGrounded = true;
+            currentCharacterStats.isInAir = false;
+            currentCharacterStats.jumpsAvailable = other.GetComponent<CharacterStats>().m_TotalStats.m_jumpsTotal;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        other.GetComponent<CharacterStats>().IsGrounded = true;
-        other.GetComponent<CharacterStats>().isInAir = false;
-        other.GetComponent<CharacterStats>().jumpsAvailable = other.GetComponent<CharacterStats>().m_TotalStats.m_jumpsTotal;
+        CharacterStats currentCharacterStats;
+        currentCharacterStats = other.GetComponent<CharacterStats>();
+        if (currentCharacterStats)
+        {
+            currentCharacterStats.IsGrounded = true;
+            currentCharacterStats.isInAir = false;
+            currentCharacterStats.jumpsAvailable = other.GetComponent<CharacterStats>().m_TotalStats.m_jumpsTotal;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        other.GetComponent<CharacterStats>().IsGrounded = false;
-        if (other.GetComponent<CharacterStats>().IsOnLeftWall == false && other.GetComponent<CharacterStats>().IsOnRightWall == false)
+        CharacterStats currentCharacterStats;
+        currentCharacterStats = other.GetComponent<CharacterStats>();
+        if (currentCharacterStats)
         {
-            other.GetComponent<CharacterStats>().isInAir = true;
+            currentCharacterStats.IsGrounded = false;
+            if (currentCharacterStats.IsOnLeftWall == false && other.GetComponent<CharacterStats>().IsOnRightWall == false)
+            {
+                currentCharacterStats.isInAir = true;
+            }
         }
     }
 

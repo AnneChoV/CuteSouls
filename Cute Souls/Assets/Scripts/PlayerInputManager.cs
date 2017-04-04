@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerInputManager : MonoBehaviour {       //This class is used by player to handle input only.
 
-
     [Header("KeyCodes")]
     public KeyCode k_LeftKey = KeyCode.A;
     public KeyCode k_LeftKey2 = KeyCode.LeftArrow;
@@ -22,11 +21,25 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
     [ReadOnly] public AttackMoves m_attackMoves;
     [ReadOnly] public MovementManager m_movementManager;
 
+    [ReadOnly] public Porcupine porcupine;
+    [ReadOnly] public Mouse mouse;
+    [ReadOnly] public Tortoise tortoise;
+
+    public GameObject playerProjectile; //WE NEED TO REPLACE THIS WITH THE ACTUAL PLAYER ONE!
+
+
+    private Vector2 targetDirection;
     void OnValidate()
     {
         m_stats = GetComponent<CharacterStats>();
         m_attackMoves = GetComponent<AttackMoves>();
         m_movementManager = GetComponent<MovementManager>();
+
+        porcupine = GetComponent<Porcupine>();
+        mouse = GetComponent<Mouse>();
+        tortoise = GetComponent<Tortoise>();
+
+
     }
 
     private void Update()
@@ -118,11 +131,52 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
 
     private void HandleMeleeAttack()
     {
-        m_stats.m_currentProtoclass.m_abilities[1].UseAbility(20, 5);
+        if (m_stats.m_currentProtoclass.Equals(porcupine))
+        {
+            if (m_movementManager.isfacingRight)
+            {
+                targetDirection = new Vector2(transform.position.x + 5, transform.position.y);
+            }
+            else
+            {
+                targetDirection = new Vector2(transform.position.x - 5, transform.position.y);
+            }
+           // Vector2 instantiationPosition = new Vector2(transform.position.x + facingDirection.x * 2.0f, transform.position.y);
+            m_stats.m_currentProtoclass.m_abilities[2].UseAbility(targetDirection, transform.position, porcupine.playerProjectile);
+        }
+        else if (m_stats.m_currentProtoclass.Equals(mouse))
+        {
+            m_stats.m_currentProtoclass.m_abilities[1].UseAbility(20, 5);
+        }
+        else if (m_stats.m_currentProtoclass.Equals(tortoise))
+        {
+            m_stats.m_currentProtoclass.m_abilities[1].UseAbility(20, 5);
+        }
     }
+        
 
-    private void HandleClassSkill()
+    private void HandleClassSkill() //UNTESTED AS FUCK.
     {
-       // m_stats.m_currentProtoclass.m_abilities[2].UseAbility();
+        int m_currentClassSkillTier = m_stats.m_currentProtoclass.m_currentClassSkillTier;
+        if (m_currentClassSkillTier == 0)
+        {
+            m_stats.m_currentProtoclass.m_abilities[12].UseAbility();
+        }
+        else
+        {
+            int currentAbilityToUse = 3;
+            if(m_stats.m_currentProtoclass.Equals(porcupine))
+            {
+                currentAbilityToUse += 6 + m_currentClassSkillTier;
+            }
+            else if (m_stats.m_currentProtoclass.Equals(mouse))
+            {
+                currentAbilityToUse += 3 + m_currentClassSkillTier;
+            }
+            else if (m_stats.m_currentProtoclass.Equals(tortoise))
+            {
+                currentAbilityToUse += m_currentClassSkillTier;
+            }
+        }
     }
 }

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Parry : Ability {
+public class ParryOne : Ability {
     public override void UseAbility()
     {
-    }
 
+    }
 }
