@@ -125,7 +125,7 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
 
         if (Input.GetKeyDown(k_ClassSkill))
         {
-
+            HandleClassSkill();
         }
     }
 
@@ -157,6 +157,7 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
 
     private void HandleClassSkill() //UNTESTED AS FUCK.
     {
+        int currentAbilityToUse = 3;
         int m_currentClassSkillTier = m_stats.m_currentProtoclass.m_currentClassSkillTier;
         if (m_currentClassSkillTier == 0)
         {
@@ -164,7 +165,7 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
         }
         else
         {
-            int currentAbilityToUse = 3;
+
             if(m_stats.m_currentProtoclass.Equals(porcupine))
             {
                 currentAbilityToUse += 6 + m_currentClassSkillTier;
@@ -178,5 +179,8 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
                 currentAbilityToUse += m_currentClassSkillTier;
             }
         }
+        Debug.Log("Using Dash");
+        //m_stats.m_currentProtoclass.m_abilities[currentAbilityToUse].UseAbility();
+        m_stats.m_currentProtoclass.m_abilities[13].UseAbility();
     }
 }
