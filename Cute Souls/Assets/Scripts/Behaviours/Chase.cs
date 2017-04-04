@@ -11,10 +11,9 @@ public class Chase : BehaviourAbstract
         //Debug.Log(movementDirection.x);
         //Debug.Log(m_playerPosition);
 
-        Debug.Log("oasda");
         if (movementDirection.x > 0 && NotAtEdge())
         {
-            Debug.Log("Moving right");
+            //Debug.Log("Moving right");
             m_movementManager.HandleMoveRight();
         }
 
@@ -22,12 +21,12 @@ public class Chase : BehaviourAbstract
          //&& NotAtEdge()
         else if (movementDirection.x < 0 && NotAtEdge())
         {
-            Debug.Log("Moving Left");
+           // Debug.Log("Moving Left");
             m_movementManager.HandleMoveLeft();
         }
         else 
         {
-            Debug.Log("Stopping");
+          //  Debug.Log("Stopping");
             // m_movementManager.HandleJumpStart(); //we'll get it to jump on the player once we have jumps resetting on ground touch.
         }
 

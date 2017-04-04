@@ -6,16 +6,26 @@ public class LeftWallColliderScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        other.GetComponent<CharacterStats>().IsOnLeftWall = true;
-        other.GetComponent<CharacterStats>().isInAir = false;
+        CharacterStats currentCharacterStats;
+        currentCharacterStats = other.GetComponent<CharacterStats>();
+        if (currentCharacterStats)
+        {
+            other.GetComponent<CharacterStats>().IsOnLeftWall = true;
+            other.GetComponent<CharacterStats>().isInAir = false;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        other.GetComponent<CharacterStats>().IsOnLeftWall = false;
-        if (other.GetComponent<CharacterStats>().IsGrounded == false && other.GetComponent<CharacterStats>().IsOnRightWall == false)
+        CharacterStats currentCharacterStats;
+        currentCharacterStats = other.GetComponent<CharacterStats>();
+        if (currentCharacterStats)
         {
-            other.GetComponent<CharacterStats>().isInAir = true;
+            other.GetComponent<CharacterStats>().IsOnLeftWall = false;
+            if (other.GetComponent<CharacterStats>().IsGrounded == false && other.GetComponent<CharacterStats>().IsOnRightWall == false)
+            {
+                other.GetComponent<CharacterStats>().isInAir = true;
+            }
         }
     }
 }

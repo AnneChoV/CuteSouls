@@ -28,6 +28,8 @@ public struct StatsTemplate {
     public float m_jumpSpeedGravityScale;   //Directly changes this entities gravity. Needs to be atleast one or you can't move.
     [Range(0, 100)]
     public int m_jumpsTotal;
+    [Range(0, 100)]
+    public bool doesGetStuckOnWalls; //Dont allow this for player. Spider only. :<
 
     public StatsTemplate Add(StatsTemplate _AddedTemplate)
     {

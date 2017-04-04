@@ -30,6 +30,9 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     [ReadOnly] public bool IsOnRightWall;
     [ReadOnly] public bool isInAir;
 
+    [ReadOnly] public bool isReducingDamage;
+    [ReadOnly] public bool isParrying;
+
     private void OnValidate()
     {
         m_TotalStats = m_currentProtoclass.m_totalStats;
@@ -56,7 +59,22 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
 
     public void TakeDamage(float _damage)
     {
-        m_currentHealth -= _damage;
-        UpdatePercentageHealth();
+        if (m_currentProtoclass.timeUntilNextDamageTaken <= 0.0f && !isParrying)
+        {
+            if (isReducingDamage)
+            {
+                _damage /= 2;
+            }
+            Debug.Log(transform.name + " took " + _damage + " damage.");
+            m_currentHealth -= _damage;
+            UpdatePercentageHealth();
+
+            m_currentProtoclass.timeUntilNextDamageTaken = m_currentProtoclass.immunityFramesNumber;
+
+            if (m_currentHealth <= 0.0f)
+            {
+                m_currentProtoclass.EnvokeDeath();
+            }
+        }
     }
 }
