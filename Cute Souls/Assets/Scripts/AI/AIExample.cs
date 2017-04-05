@@ -6,18 +6,18 @@ public class AIExample : AbstractEnemy {
 
     public float timeBetweenUseAbilityZero;
 
-    private float abilityZeroTimer;
+    private float abilityZerotimer;
 
     private void OnValidate()
     {
-        abilityZeroTimer = timeBetweenUseAbilityZero;
+        abilityZerotimer = timeBetweenUseAbilityZero;
     }
 
     //NOTE: THIS ENEMY DOESNT DO SHIT CAUSE IT HAS NO ABILITIES. PUT SOME ABILTIES IN ARCHETYPE.
     void Update () {
-        abilityZeroTimer -= Time.deltaTime;
+        abilityZerotimer -= Time.deltaTime;
         
-        if (abilityZeroTimer <= 0.0f)
+        if (abilityZerotimer <= 0.0f)
         {
             archetype.m_abilities[0].UseAbility();  //Uses the ability in the 0 position, no matter what ability it is.
         }      

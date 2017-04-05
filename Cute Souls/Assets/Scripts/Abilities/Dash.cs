@@ -22,7 +22,6 @@ public class Dash : Ability
     private void Update()
     {
         timer -= Time.deltaTime;
-        Debug.Log("Current timer: " + timer);
 
         if (timer > 0)
         {
@@ -40,8 +39,6 @@ public class Dash : Ability
 
         GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY |
             RigidbodyConstraints2D.FreezeRotation;
-
-
     }
 
     public override void UseAbility(float _damage)

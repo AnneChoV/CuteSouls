@@ -26,9 +26,9 @@ public class StorageInventory : MonoBehaviour
 
     private InputManager inputManagerDatabase;
 
-    float startTimer;
-    float endTimer;
-    bool showTimer;
+    float starttimer;
+    float endtimer;
+    bool showtimer;
 
     public int itemAmount;
 
@@ -79,10 +79,10 @@ public class StorageInventory : MonoBehaviour
             }
         }
 
-        if (GameObject.FindGameObjectWithTag("Timer") != null)
+        if (GameObject.FindGameObjectWithTag("timer") != null)
         {
-            timerImage = GameObject.FindGameObjectWithTag("Timer").GetComponent<Image>();
-            timer = GameObject.FindGameObjectWithTag("Timer");
+            timerImage = GameObject.FindGameObjectWithTag("timer").GetComponent<Image>();
+            timer = GameObject.FindGameObjectWithTag("timer");
             timer.SetActive(false);
         }
         if (GameObject.FindGameObjectWithTag("Tooltip") != null)
@@ -101,12 +101,12 @@ public class StorageInventory : MonoBehaviour
 
         float distance = Vector3.Distance(this.gameObject.transform.position, player.transform.position);
 
-        if (showTimer)
+        if (showtimer)
         {
             if (timerImage != null)
             {
                 timer.SetActive(true);
-                float fillAmount = (Time.time - startTimer) / timeToOpenStorage;
+                float fillAmount = (Time.time - starttimer) / timeToOpenStorage;
                 timerImage.fillAmount = fillAmount;
             }
         }
@@ -114,7 +114,7 @@ public class StorageInventory : MonoBehaviour
         if (distance <= distanceToOpenStorage && Input.GetKeyDown(inputManagerDatabase.StorageKeyCode))
         {
             showStorage = !showStorage;
-            StartCoroutine(OpenInventoryWithTimer());
+            StartCoroutine(OpenInventoryWithtimer());
         }
 
         if (distance > distanceToOpenStorage && showStorage)
@@ -130,23 +130,23 @@ public class StorageInventory : MonoBehaviour
             tooltip.deactivateTooltip();
             timerImage.fillAmount = 0;
             timer.SetActive(false);
-            showTimer = false;
+            showtimer = false;
         }
     }
 
-    IEnumerator OpenInventoryWithTimer()
+    IEnumerator OpenInventoryWithtimer()
     {
         if (showStorage)
         {
-            startTimer = Time.time;
-            showTimer = true;
+            starttimer = Time.time;
+            showtimer = true;
             yield return new WaitForSeconds(timeToOpenStorage);
             if (showStorage)
             {
                 inv.ItemsInInventory.Clear();
                 inventory.SetActive(true);
                 addItemsToInventory();
-                showTimer = false;
+                showtimer = false;
                 if (timer != null)
                     timer.SetActive(false);
             }

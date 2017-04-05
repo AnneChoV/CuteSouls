@@ -6,6 +6,7 @@ using UnityEngine;
 public class Parry : Ability {
     public override void UseAbility()
     {
+
     }
 
 }

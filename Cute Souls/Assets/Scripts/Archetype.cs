@@ -18,7 +18,7 @@ public class Archetype : MonoBehaviour {
     [ReadOnly]
     public float timeUntilNextDamageTaken;
 
-    public float blockingTimer;
+    public float blockingtimer;
     public float timeUntilBlockRunsOut;
     public float timeBetweenBlocks;
     public float timeUntilNextBlock;
@@ -37,7 +37,7 @@ public class Archetype : MonoBehaviour {
     {
         if (collision.gameObject.name == "Player")
         {
-            collision.GetComponent<CharacterStats>().TakeDamage(m_totalStats.m_DamageToOtherUponCollision);
+            collision.GetComponent<CharacterStats>().TakeDamage(m_totalStats.m_DamageToOtherUponCollision, false);
         }
     }
 

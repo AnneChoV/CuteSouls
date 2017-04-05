@@ -31,7 +31,7 @@ public class EnemyProjectile : MonoBehaviour {
 
         velocity = (targetPosition - transform.position);
         velocity.Normalize();
-        Debug.Log("velocity x: " + velocity.x);
+        //Debug.Log("velocity x: " + velocity.x);
         if (velocity.x < 0)
         {
             spriteRenderer.flipX = true;    //CHANGE THIS TO FLIP IT
@@ -41,7 +41,7 @@ public class EnemyProjectile : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        myRigidbody.velocity = velocity * 30.0f;
+        myRigidbody.velocity = velocity * 10.0f; // CHANGE PROJECTILE SPEED
         myRigidbody.angularVelocity = rotationSpeed;
     }
 
@@ -52,7 +52,7 @@ public class EnemyProjectile : MonoBehaviour {
             CharacterStats colliderStats = collision.GetComponent<CharacterStats>();
             if (colliderStats)
             {
-                colliderStats.TakeDamage(10);
+                colliderStats.TakeDamage(10, true);
             }
             Destroy(gameObject);
         }
