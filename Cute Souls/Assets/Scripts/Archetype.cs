@@ -16,12 +16,12 @@ public class Archetype : MonoBehaviour {
 
     public float immunityFramesNumber;
     [ReadOnly]
-    public float timeUntilNextDamageTaken;
+    //public float timeUntilNextDamageTaken;
 
-    public float blockingtimer;
-    public float timeUntilBlockRunsOut;
-    public float timeBetweenBlocks;
-    public float timeUntilNextBlock;
+    //public float blockingtimer;
+    //public float timeUntilBlockRunsOut;
+    //public float timeBetweenBlocks;
+    //public float timeUntilNextBlock;
 
     public int m_currentClassSkillTier; //USED FOR PLAYER ONLY
 
@@ -51,15 +51,7 @@ public class Archetype : MonoBehaviour {
 
     public virtual void Update()
     {
-        timeUntilNextDamageTaken -= Time.deltaTime;
-
-        if (timeUntilNextDamageTaken <= 0.0f)
-        {
-            //CHARACTER IS IMMUNE TO ALL DAMAGE. MAKE IT BLINK A DIFFERENT COLOUR AND/OR PLAY A SOUND!
-        }
-
-        timeUntilBlockRunsOut -= Time.deltaTime;
-        timeUntilNextBlock -= Time.deltaTime;
+       
     }
 
     public virtual void EnvokeDeath()
