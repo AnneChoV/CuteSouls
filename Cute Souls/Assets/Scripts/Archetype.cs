@@ -73,8 +73,25 @@ public class Archetype : MonoBehaviour {
     {
         if (GetComponent<Player>())
         {
+            Debug.Log("something dead");
+            //ANNEHERE  - Player dead sprite
+            if (GetComponent<CharacterStats>().m_currentProtoclass.Equals(GetComponent<Mouse>()))
+            {
+                Debug.Log("Mouse ded"); // This is outputting for me. :)
+                //Mouse ded
+            }
+            else if (GetComponent<CharacterStats>().m_currentProtoclass.Equals(GetComponent<Porcupine>()))
+            {
+                Debug.Log("Porcupine ded");
+            }
+            else if (GetComponent<CharacterStats>().m_currentProtoclass.Equals(GetComponent<Tortoise>()))
+            {
+
+                Debug.Log("Tortoise ded");
+            }
             isDead = true;
         }
+
         else
         {
             Destroy(gameObject);
@@ -83,9 +100,23 @@ public class Archetype : MonoBehaviour {
         //DEATH ANIMATION. DEATH PARTICLES. DEATH SOULS RELEASED. DIEDIEDIE SOUND.
     }
 
-    public void Respawn()
+    public void Respawn()   
     {
+        //AND HERE - player alive sprite
         transform.position = GetComponent<CharacterStats>().RespawnPoint;
+
+        if (GetComponent<CharacterStats>().m_currentProtoclass.Equals(GetComponent<Mouse>()))
+        {
+            Debug.Log("Mouse Alive"); // This is outputting for me too. :)                                 
+        }
+        else if (GetComponent<CharacterStats>().m_currentProtoclass.Equals(GetComponent<Porcupine>()))
+        {
+            Debug.Log("Porcupine alive");
+        }
+        else if (GetComponent<CharacterStats>().m_currentProtoclass.Equals(GetComponent<Tortoise>()))
+        {
+            Debug.Log("Tortoise alive");
+        }
         isDead = false;
     }
 }

@@ -164,11 +164,23 @@ public class MovementManager : MonoBehaviour
 
             m_Stats.jumpsAvailable--;
             m_Stats.jumpTime = Time.time;
+
+            if (m_Stats.m_currentProtoclass.Equals(GetComponent<Mouse>())) //ANNE HERE - Jumping
+            {
+
+            }
+            else if (m_Stats.m_currentProtoclass.Equals(GetComponent<Porcupine>()))
+            {
+                
+            }
+            else if (m_Stats.m_currentProtoclass.Equals(GetComponent<Tortoise>()))
+            {
+
+            }
         }
         else
         {
-            // Ambies a wee cutie
-            Debug.Log("Can't jump sorry - xoxo gossip austin");
+            Debug.Log("Can't jump sorry - xoxo gossip");
         }
     }
 

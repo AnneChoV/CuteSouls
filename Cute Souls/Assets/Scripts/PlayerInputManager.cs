@@ -132,7 +132,7 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
         }
     }
 
-    private void HandleMeleeAttack()
+    private void HandleMeleeAttack()    //ANNE HERE - Attack animations.
     {
         if (m_stats.m_currentProtoclass.Equals(porcupine))
         {
@@ -157,7 +157,7 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
         }
     }
     
-    private void HandleClassSkill() //UNTESTED AS FUCK.
+    private void HandleClassSkill() //ANNE HERE - class skills.
     {
         int currentAbilityToUse = 3;
         int m_currentClassSkillTier = m_stats.m_currentProtoclass.m_currentClassSkillTier;
