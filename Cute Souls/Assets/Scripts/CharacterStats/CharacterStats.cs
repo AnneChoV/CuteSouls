@@ -44,6 +44,8 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     [ReadOnly] public bool canAttack;
     [ReadOnly] public bool canClassSwap;
 
+    public Vector3 RespawnPoint;
+
     private void OnValidate()
     {
         m_TotalStats = m_currentProtoclass.m_totalStats;
@@ -82,6 +84,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
             }
             IsGrounded = groundCheck;
         }
+        UpdatePercentageHealth();
     }
 
     public void UpdatePercentageHealth()

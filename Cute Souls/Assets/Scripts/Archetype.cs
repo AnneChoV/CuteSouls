@@ -16,12 +16,17 @@ public class Archetype : MonoBehaviour {
 
     public float immunityFramesNumber;
     [ReadOnly]
+
     //public float timeUntilNextDamageTaken;
 
     //public float blockingtimer;
     //public float timeUntilBlockRunsOut;
     //public float timeBetweenBlocks;
     //public float timeUntilNextBlock;
+
+    public bool isDead = false;
+    public float respawnTime = 2.0f;
+    public float respawnTimer = 2.0f;
 
     public int m_currentClassSkillTier; //USED FOR PLAYER ONLY
 
@@ -51,13 +56,36 @@ public class Archetype : MonoBehaviour {
 
     public virtual void Update()
     {
-       
+        Debug.Log("Updating");
+       if (isDead == true)
+        {
+            Debug.Log("ded");
+            respawnTimer -= Time.deltaTime;
+            if (respawnTimer <= 0.0f)
+            {
+                Debug.Log("Respawning");
+                Respawn();
+            }
+        }
     }
 
     public virtual void EnvokeDeath()
     {
-        Destroy(gameObject);
+        if (GetComponent<Player>())
+        {
+            isDead = true;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
         //DEATH ANIMATION. DEATH PARTICLES. DEATH SOULS RELEASED. DIEDIEDIE SOUND.
+    }
+
+    public void Respawn()
+    {
+        transform.position = GetComponent<CharacterStats>().RespawnPoint;
+        isDead = false;
     }
 }
