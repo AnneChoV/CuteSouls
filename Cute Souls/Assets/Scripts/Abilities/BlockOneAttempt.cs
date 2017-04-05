@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockOne : Ability
+public class BlockOneAttempt : Ability
 {
     public float currentBlockingDamagetimer;
 
@@ -12,7 +12,7 @@ public class BlockOne : Ability
         if (currentBlockingDamagetimer <= 0.0f)
         {
             Debug.Log("Increasing blocking timer.");
-            currentBlockingDamagetimer = characterStats.m_currentProtoclass.blockingtimer;
+           // currentBlockingDamagetimer = characterStats.m_currentProtoclass.blockingtimer;
         }
         else
         {
@@ -43,9 +43,9 @@ public class BlockOne : Ability
             characterStats.isBlockingDamageFromLeft = false;
         }
 
-        if (characterStats.m_currentProtoclass.timeUntilNextBlock <= 0.0f)
-        {
-            characterStats.m_currentProtoclass.timeUntilBlockRunsOut = characterStats.m_currentProtoclass.blockingtimer;
-        }
+        //if (characterStats.m_currentProtoclass.timeUntilNextBlock <= 0.0f)
+        //{
+        //    characterStats.m_currentProtoclass.timeUntilBlockRunsOut = characterStats.m_currentProtoclass.blockingtimer;
+        //}
     }
 }

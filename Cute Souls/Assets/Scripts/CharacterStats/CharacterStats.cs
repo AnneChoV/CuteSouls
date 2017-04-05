@@ -11,8 +11,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
 
     public Archetype m_currentProtoclass;
     public GameObject playerHealthBar;
-    [ReadOnly]
-    public RectTransform playerHealthBarRT;
+    private RectTransform playerHealthBarRT;
     [ReadOnly] public Archetype[] availableArchetypes;
     public Sprite[] m_Sprites;
     [ReadOnly] public float m_currentHealth;
@@ -63,20 +62,18 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
         m_TotalStats = m_currentProtoclass.m_totalStats;    //THIS MIGHT CAUSE LAG.
         playerHealthBarRT = playerHealthBar.GetComponent<RectTransform>();
         playerHealthBarRT.anchoredPosition = Vector2.Lerp(playerHealthBarRT.anchoredPosition, new Vector3(2 * m_currentHealth - 100, playerHealthBarRT.anchoredPosition.y), 0.2f);
-        Debug.Log(m_currentHealth);
     }
 
     public void UpdatePercentageHealth()
     {
         m_percentageHealth = m_currentHealth / m_MaxHealth * 100;
-        Debug.Log(m_percentageHealth);
     }
 
     public void TakeDamage(float _damage, bool isRanged)
     {
 
         if (!isBlocking && !isParrying)
-        if (m_currentProtoclass.timeUntilNextDamageTaken <= 0.0f && !isParrying)
+       // if (m_currentProtoclass.timeUntilNextDamageTaken <= 0.0f && !isParrying)
         {
             Debug.Log(transform.name + " took " + _damage + " damage.");
             m_currentHealth -= _damage;
