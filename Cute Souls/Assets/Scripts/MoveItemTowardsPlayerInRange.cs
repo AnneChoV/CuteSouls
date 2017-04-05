@@ -29,7 +29,14 @@ public class MoveItemTowardsPlayerInRange : MonoBehaviour {
                     case 2:
                         player.GetComponent<Tortoise>().m_currentClassSkillTier++;
                         break;
+                    case 3:
+                        player.GetComponent<CharacterStats>().canClassSwap = true;
+                        break;
+                    case 4:
+                        player.GetComponent<CharacterStats>().canAttack = true;
+                        break;
                     default:
+                        Debug.Log("ERROR HERE, GEM TYPE WRONG");
                         break;
                 }
                 Destroy(gameObject);

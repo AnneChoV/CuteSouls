@@ -113,7 +113,10 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
 
     private void HandleClassSwap()
     {
-        m_stats.m_currentProtoclass.m_abilities[0].UseAbility();
+        if (m_stats.canClassSwap)
+        {
+            m_stats.m_currentProtoclass.m_abilities[0].UseAbility();
+        }
     }
 
     private void CheckAbilities()

@@ -32,6 +32,8 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
 
     [ReadOnly] public bool isReducingDamage;
     [ReadOnly] public bool isParrying;
+    [ReadOnly] public bool canAttack;
+    [ReadOnly] public bool canClassSwap;
 
     private void OnValidate()
     {

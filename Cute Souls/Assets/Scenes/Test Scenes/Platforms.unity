@@ -1827,6 +1827,28 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 2.06}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!1 &124323971 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1853951285851730, guid: ac70216d61aca87468f9d61df2597e71,
+    type: 2}
+  m_PrefabInternal: {fileID: 1668818193}
+--- !u!95 &124323979
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 124323971}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &133371597
 GameObject:
   m_ObjectHideFlags: 0
@@ -13572,6 +13594,7 @@ MonoBehaviour:
   m_attackingDirection: {x: 0, y: 0}
   m_rigidBody: {fileID: 1334933790}
   m_Stats: {fileID: 1334933791}
+  m_animator: {fileID: 0}
   spriteRenderer: {fileID: 1548210810}
 --- !u!114 &1334933796
 MonoBehaviour:
@@ -13656,6 +13679,7 @@ MonoBehaviour:
   - {fileID: 41155894}
   - {fileID: 41155895}
   m_behaviours: []
+  animatorController: {fileID: 0}
   m_EquipmentStats:
     m_Health: 100
     m_DamageToOtherUponCollision: 0
@@ -13729,6 +13753,7 @@ MonoBehaviour:
   - {fileID: 41155894}
   - {fileID: 41155895}
   m_behaviours: []
+  animatorController: {fileID: 0}
   m_EquipmentStats:
     m_Health: 0
     m_DamageToOtherUponCollision: 0
@@ -13804,6 +13829,7 @@ MonoBehaviour:
   - {fileID: 41155894}
   - {fileID: 41155895}
   m_behaviours: []
+  animatorController: {fileID: 0}
   m_EquipmentStats:
     m_Health: 0
     m_DamageToOtherUponCollision: 0
@@ -15510,7 +15536,7 @@ Animator:
   m_GameObject: {fileID: 1548210807}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 14ea0e8ac8be6dd48a5f7ba7a5e17a54, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
