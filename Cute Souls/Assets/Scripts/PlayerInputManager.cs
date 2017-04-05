@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInputManager : MonoBehaviour {       //This class is used by player to handle input only.
+public class PlayerInputManager : MonoBehaviour
+{       //This class is used by player to handle input only.
 
     [Header("KeyCodes")]
     public KeyCode k_LeftKey = KeyCode.A;
@@ -17,17 +18,29 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
     public KeyCode k_MeleeAttack = KeyCode.Z;
     public KeyCode k_ClassSkill = KeyCode.X;
 
-    [ReadOnly] public CharacterStats m_stats;
-    [ReadOnly] public AttackMoves m_attackMoves;
-    [ReadOnly] public MovementManager m_movementManager;
+    [ReadOnly]
+    public CharacterStats m_stats;
+    [ReadOnly]
+    public AttackMoves m_attackMoves;
+    [ReadOnly]
+    public MovementManager m_movementManager;
 
-    [ReadOnly] public Porcupine porcupine;
-    [ReadOnly] public Mouse mouse;
-    [ReadOnly] public Tortoise tortoise;
-
+    [ReadOnly]
+    public Porcupine porcupine;
+    [ReadOnly]
+    public Mouse mouse;
+    [ReadOnly]
+    public Tortoise tortoise;
+    [ReadOnly]
+    public Animator m_animator;
+    [ReadOnly]
+    public SoundManager soundManager;
     public GameObject playerProjectile; //WE NEED TO REPLACE THIS WITH THE ACTUAL PLAYER ONE!
 
-
+    bool attacking;
+    public float attackTiming = 0.2f; //set this
+    [ReadOnly]
+    public float attackTimer;   //this gets set.
     private Vector2 targetDirection;
     void OnValidate()
     {
@@ -38,8 +51,8 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
         porcupine = GetComponent<Porcupine>();
         mouse = GetComponent<Mouse>();
         tortoise = GetComponent<Tortoise>();
-
-
+        m_animator = GetComponentInChildren<Animator>();
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     private void Update()
@@ -47,8 +60,16 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
         CheckMovement();
         CheckClassSwap();
         CheckAbilities();
+
+        attackTimer -= Time.deltaTime;
+        if (attacking == true && attackTimer <= 0.0f)
+        {
+            //no animation anymore
+            Debug.Log("Not attakcin");
+            m_animator.SetBool("IsAttacking", false);
+        }
     }
-                    //MOVEMENT
+    //MOVEMENT
     private void CheckMovement()
     {
         //Left Right
@@ -73,7 +94,7 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
         else if (Input.GetKeyUp(k_JumpKey) || Input.GetKeyDown(k_JumpKey2))
             HandleJumpRelease();
     }
-                   //CLASS SWAPPING
+    //CLASS SWAPPING
     private void CheckClassSwap()
     {
         if (Input.GetKeyDown(k_ClassSwapKey) || Input.GetKeyDown(k_ClassSwapKey2))
@@ -130,6 +151,19 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
         {
             HandleClassSkill();
         }
+        if (Input.GetKey(k_ClassSkill))
+        {
+            HandleClassSkill2();
+            m_animator.SetBool("IsBlocking", true);
+        }
+        else
+        {
+            m_stats.isBlocking = false;
+            m_animator.SetBool("IsBlocking", false);
+            m_animator.SetBool("IsDashing", false);
+
+            Debug.Log("OIHASD");
+        }
     }
 
     private void HandleMeleeAttack()    //ANNE HERE - Attack animations.
@@ -144,7 +178,7 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
             {
                 targetDirection = new Vector2(transform.position.x - 5, transform.position.y);
             }
-           // Vector2 instantiationPosition = new Vector2(transform.position.x + facingDirection.x * 2.0f, transform.position.y);
+            // Vector2 instantiationPosition = new Vector2(transform.position.x + facingDirection.x * 2.0f, transform.position.y);
             m_stats.m_currentProtoclass.m_abilities[2].UseAbility(targetDirection, transform.position, porcupine.playerProjectile);
         }
         else if (m_stats.m_currentProtoclass.Equals(mouse))
@@ -155,8 +189,15 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
         {
             m_stats.m_currentProtoclass.m_abilities[1].UseAbility(20, 30);
         }
+
+        m_animator.SetBool("IsAttacking", true);
+
+        attacking = true;
+        attackTimer = attackTiming; //set this
+        Debug.Log("attakcin");
     }
-    
+
+
     private void HandleClassSkill() //ANNE HERE - class skills.
     {
         int currentAbilityToUse = 3;
@@ -167,10 +208,10 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
         }
         else
         {
-
             if (m_stats.m_currentProtoclass.Equals(porcupine))
             {
-                currentAbilityToUse += 6 + m_currentClassSkillTier;
+                m_animator.SetBool("IsDashing", true);
+                currentAbilityToUse += 2 + m_currentClassSkillTier;
             }
             else if (m_stats.m_currentProtoclass.Equals(mouse))
             {
@@ -178,9 +219,16 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
             }
             else if (m_stats.m_currentProtoclass.Equals(tortoise))
             {
-                currentAbilityToUse += m_currentClassSkillTier;
+                currentAbilityToUse = 12;
             }
+            m_stats.m_currentProtoclass.m_abilities[currentAbilityToUse].UseAbility();
         }
-        m_stats.m_currentProtoclass.m_abilities[currentAbilityToUse].UseAbility();
+    }
+    private void HandleClassSkill2() //ANNE HERE - class skills.
+    {
+        if (m_stats.m_currentProtoclass.Equals(tortoise))
+        {
+            m_stats.m_currentProtoclass.m_abilities[3].UseAbility();
+        }
     }
 }

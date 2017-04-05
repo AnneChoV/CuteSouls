@@ -66,14 +66,17 @@ public class MovementManager : MonoBehaviour
         {
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * -1 * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
             if (m_animator)
-            }
-            m_animator.SetBool("IsMoving", true);
-            m_animator.SetBool("IsJumping", false);
             {
+                m_animator.SetBool("IsMoving", true);
+                m_animator.SetBool("IsJumping", false);
+            }            
         }
         else if (m_Stats.isInAir)
         {
-            m_animator.SetBool("IsJumping", true);
+            if (m_animator)
+            {
+                m_animator.SetBool("IsJumping", true);
+            }
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_airAcceleration * m_Stats.m_TotalStats.m_airAcceleration * -1 * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
         }
         else if (m_Stats.IsOnLeftWall)
@@ -109,14 +112,13 @@ public class MovementManager : MonoBehaviour
         {
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
             if (m_animator)
-            }
-            m_animator.SetBool("IsMoving", true);
-            m_animator.SetBool("IsJumping", false);
             {
+                m_animator.SetBool("IsMoving", true);
+                m_animator.SetBool("IsJumping", false);
+            }
         }
         else if (m_Stats.isInAir)
         {
-            m_animator.SetBool("IsJumping", true);
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_airAcceleration * m_Stats.m_TotalStats.m_airAcceleration * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
         }
         else if (m_Stats.IsOnLeftWall)
@@ -173,21 +175,11 @@ public class MovementManager : MonoBehaviour
 
             m_Stats.jumpsAvailable--;
             m_animator.SetBool("IsJumping", true);
-            soundManager.Jump();
+            if (soundManager)
+            {
+                soundManager.Jump();
+            }
             m_Stats.jumpTime = Time.time;
-
-            if (m_Stats.m_currentProtoclass.Equals(GetComponent<Mouse>())) //ANNE HERE - Jumping
-            {
-
-            }
-            else if (m_Stats.m_currentProtoclass.Equals(GetComponent<Porcupine>()))
-            {
-                
-            }
-            else if (m_Stats.m_currentProtoclass.Equals(GetComponent<Tortoise>()))
-            {
-
-            }
         }
         else
         {

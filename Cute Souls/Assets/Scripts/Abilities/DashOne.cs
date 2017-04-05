@@ -10,6 +10,7 @@ public class DashOne : Ability {
 
     private void Update()
     {
+
         timer -= Time.deltaTime;
 
         if (dashing)

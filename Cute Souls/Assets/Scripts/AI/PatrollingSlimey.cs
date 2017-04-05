@@ -41,9 +41,7 @@ public class PatrollingSlimey : AbstractEnemy
 
     public override void OnValidate()
     {
-        Debug.Log("Validating");
         base.OnValidate();
-        Debug.Log("Validating2");
         abilityZerotimer = timeBetweenUseAbilityZero;
         circle = GetComponent<CircleCollider2D>();
         m_currentBehaviour = archetype.m_behaviours[1];
