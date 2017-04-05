@@ -6,7 +6,8 @@ using UnityEngine;
 //THIS NEEDS TO BE CHANGED TO STATS MANAGER
 
 public class CharacterStats : MonoBehaviour {   //This class is used by both player and enemy as a storage for their stats. Things like movement speed are here in case they change according to equipment or enemy boss phase etc.
-    
+   
+
     [Header("Character Stats")]
 
     public Archetype m_currentProtoclass;
@@ -16,6 +17,8 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     [ReadOnly] public float m_MaxHealth;
     [ReadOnly] public float m_percentageHealth; //USE THIS FOR THE BAR
     [ReadOnly] public int jumpsAvailable;
+
+    public LayerMask GroundLayerMask;
 
     [ReadOnly]
     public StatsTemplate m_defaultStats;
@@ -29,6 +32,8 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     [ReadOnly] public bool IsOnLeftWall;
     [ReadOnly] public bool IsOnRightWall;
     [ReadOnly] public bool isInAir;
+    [ReadOnly] public float jumpTime = -10.0f;
+    [ReadOnly] public float jumpWaitDelay = 0.2f;
 
     [ReadOnly] public bool isBlocking;
     [ReadOnly]
@@ -56,6 +61,27 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     private void Update()
     {
         m_TotalStats = m_currentProtoclass.m_totalStats;    //THIS MIGHT CAUSE LAG.
+
+        Debug.DrawRay(transform.position, Vector2.down * 2.0f, Color.red, 1.0f);
+        bool groundCheck = Physics2D.Raycast(transform.position, Vector2.down, 2.0f, GroundLayerMask);
+
+        if (groundCheck != IsGrounded)
+        {
+            if (groundCheck)
+            {
+                isInAir = false;
+                jumpsAvailable = m_TotalStats.m_jumpsTotal;
+            }
+            else
+            {
+                isInAir = true;
+                if (jumpTime > Time.time + jumpWaitDelay)
+                {
+                    jumpsAvailable--;
+                }
+            }
+            IsGrounded = groundCheck;
+        }
     }
 
     public void UpdatePercentageHealth()
@@ -67,7 +93,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     {
 
         if (!isBlocking && !isParrying)
-        if (m_currentProtoclass.timeUntilNextDamageTaken <= 0.0f && !isParrying)
+     //   if (m_currentProtoclass.timeUntilNextDamageTaken <= 0.0f && !isParrying)
         {
             Debug.Log(transform.name + " took " + _damage + " damage.");
             m_currentHealth -= _damage;

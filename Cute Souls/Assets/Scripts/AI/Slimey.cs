@@ -35,9 +35,11 @@ public class Slimey : AbstractEnemy
         }
     }
 
-    private void OnValidate()
+    public override void OnValidate()
     {
         abilityZerotimer = timeBetweenUseAbilityZero;
         circle = GetComponent<CircleCollider2D>();
+
+        base.OnValidate();
     }
 }

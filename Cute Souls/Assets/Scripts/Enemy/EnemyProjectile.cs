@@ -23,8 +23,8 @@ public class EnemyProjectile : MonoBehaviour {
     // Use this for initialization
     void Start()
     {    
-        UserTransform = transform.parent.parent.GetComponent<Transform>();
-        UserPosition = UserTransform.position;
+     //   UserTransform = transform.parent.parent.GetComponent<Transform>();
+     //   UserPosition = UserTransform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
         myRigidbody = GetComponent<Rigidbody2D>();
 

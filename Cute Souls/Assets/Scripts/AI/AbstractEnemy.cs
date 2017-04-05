@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AbstractEnemy : MonoBehaviour
 {
-    [ReadOnly] public Archetype archetype; //Use this to get the abilties list and the behaviour list.
+     [ReadOnly] public Archetype archetype; //Use this to get the abilties list and the behaviour list.
     [ReadOnly] public MovementManager movementManager;
 
     [ReadOnly] public BehaviourAbstract m_currentBehaviour;
@@ -14,7 +14,7 @@ public abstract class AbstractEnemy : MonoBehaviour
     [ReadOnly] public float m_distanceFromPlayer;
 
 
-    private void OnValidate()
+    public virtual void OnValidate()
     {
         archetype = GetComponent<Archetype>();  //This means every enemy that extends this class already has the archetype.
         movementManager = GetComponent<MovementManager>();

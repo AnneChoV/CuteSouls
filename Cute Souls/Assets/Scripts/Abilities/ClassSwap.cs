@@ -5,8 +5,11 @@ using UnityEngine;
 public class ClassSwap : Ability    //If we want to allow enemies to use this, we will need to create a class
 {
     Rigidbody2D m_rigidBody;
+
+    private int oldMaxJumps;
     public override void UseAbility()
     {
+        oldMaxJumps = characterStats.m_TotalStats.m_jumpsTotal;
         SwitchToNextClass();
         ResetStats();
         UpdateVelocity();
@@ -46,6 +49,11 @@ public class ClassSwap : Ability    //If we want to allow enemies to use this, w
         characterStats.m_equipmentStats = characterStats.m_currentProtoclass.m_EquipmentStats;
 
         characterStats.m_currentHealth = characterStats.m_MaxHealth * characterStats.m_percentageHealth / 100;
+
+        characterStats.m_TotalStats = characterStats.m_currentProtoclass.m_totalStats;
+
+        int offset = oldMaxJumps - characterStats.m_TotalStats.m_jumpsTotal;
+        characterStats.jumpsAvailable -= offset;
     }
 
     private void SwitchToNextClass()

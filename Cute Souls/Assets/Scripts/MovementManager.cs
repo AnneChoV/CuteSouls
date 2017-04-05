@@ -43,6 +43,7 @@ public class MovementManager : MonoBehaviour
                 m_rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
         }
+        
     }
 
     // Update is called once per frame
@@ -61,7 +62,10 @@ public class MovementManager : MonoBehaviour
         if (m_Stats.IsGrounded)   //If grounded
         {
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * -1 * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
-            m_animator.SetBool("IsMoving", true);
+            if (m_animator)
+            {
+                m_animator.SetBool("IsMoving", true);
+            }
         }
         else if (m_Stats.isInAir)
         {
@@ -99,7 +103,10 @@ public class MovementManager : MonoBehaviour
         if (m_Stats.IsGrounded)   //If grounded
         {
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
-            m_animator.SetBool("IsMoving", true);
+            if (m_animator)
+            {
+                m_animator.SetBool("IsMoving", true);
+            }
         }
         else if (m_Stats.isInAir)
         {
@@ -150,15 +157,18 @@ public class MovementManager : MonoBehaviour
     //JUMP FUNCTIONS
     public void HandleJumpStart()
     {
-        if (m_Stats.jumpsAvailable > 0)
+        if (m_Stats.jumpsAvailable > 0 && m_Stats.jumpTime < Time.time + m_Stats.jumpWaitDelay)
         {
             m_rigidBody.velocity = new Vector2(m_rigidBody.velocity.x, 0.0f);
             m_rigidBody.AddForce(new Vector2(0, m_Stats.m_TotalStats.m_jumpHeight * m_Stats.m_TotalStats.m_jumpSpeedGravityScale / 4), ForceMode2D.Impulse);
+
             m_Stats.jumpsAvailable--;
+            m_Stats.jumpTime = Time.time;
         }
         else
         {
-            Debug.Log("No jumps left soz xoxo");
+            // Ambies a wee cutie
+            Debug.Log("Can't jump sorry - xoxo gossip austin");
         }
     }
 
