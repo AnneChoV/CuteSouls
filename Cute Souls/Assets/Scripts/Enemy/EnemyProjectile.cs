@@ -15,7 +15,7 @@ public class EnemyProjectile : MonoBehaviour {
 
     public float damage;    //Needs to be set somewhere.
 
-    private Rigidbody2D myRigidbody;
+    public Rigidbody2D myRigidbody;
 
     SpriteRenderer spriteRenderer;
     Vector2 velocity;
@@ -40,8 +40,11 @@ public class EnemyProjectile : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        myRigidbody.velocity = velocity * speed; // CHANGE PROJECTILE SPEED lolsoz
-        myRigidbody.angularVelocity = rotationSpeed;
+        if (gameObject)
+        {
+            myRigidbody.velocity = velocity * speed; // CHANGE PROJECTILE SPEED lolsoz
+            myRigidbody.angularVelocity = rotationSpeed;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -51,7 +54,24 @@ public class EnemyProjectile : MonoBehaviour {
             CharacterStats colliderStats = collision.GetComponent<CharacterStats>();
             if (colliderStats)
             {
-                colliderStats.TakeDamage(10, true);
+                if (transform.position.x > collision.transform.position.x)  //projectile coming from right.
+                {
+                    if (!colliderStats.isBlockingDamageFromRight)
+                    {
+                        colliderStats.TakeDamage(10, true);
+                    }
+                    else
+                    {
+                        Debug.Log("blocked");
+                    }
+                }
+                else
+                {
+                    if (!colliderStats.isBlockingDamageFromLeft)
+                    {
+                        colliderStats.TakeDamage(10, true);
+                    }
+                }
             }
             Debug.Log(collision.name);
             Destroy(gameObject);
@@ -69,6 +89,11 @@ public class EnemyProjectile : MonoBehaviour {
         {
             if (!(collision.transform.tag.Equals(transform.parent.parent.tag)))
             {
+                CharacterStats colliderStats = collision.transform.GetComponent<CharacterStats>();
+                if (colliderStats)
+                {
+                    colliderStats.TakeDamage(10, true);
+                }          
                 Destroy(gameObject);
             }
         }

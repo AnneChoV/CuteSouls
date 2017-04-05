@@ -156,8 +156,7 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
             m_stats.m_currentProtoclass.m_abilities[1].UseAbility(20, 30);
         }
     }
-
-
+    
     private void HandleClassSkill() //UNTESTED AS FUCK.
     {
         int currentAbilityToUse = 3;
@@ -182,8 +181,6 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
                 currentAbilityToUse += m_currentClassSkillTier;
             }
         }
-        Debug.Log("Currently using Parry 1");
-
-        m_stats.m_currentProtoclass.m_abilities[9].UseAbility();
+        m_stats.m_currentProtoclass.m_abilities[currentAbilityToUse].UseAbility();
     }
 }
