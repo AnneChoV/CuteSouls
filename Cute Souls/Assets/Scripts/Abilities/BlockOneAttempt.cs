@@ -12,7 +12,7 @@ public class BlockOneAttempt : Ability
         if (currentBlockingDamagetimer <= 0.0f)
         {
             Debug.Log("Increasing blocking timer.");
-         //   currentBlockingDamagetimer = characterStats.m_currentProtoclass.blockingtimer;
+           // currentBlockingDamagetimer = characterStats.m_currentProtoclass.blockingtimer;
         }
         else
         {
@@ -43,9 +43,9 @@ public class BlockOneAttempt : Ability
             characterStats.isBlockingDamageFromLeft = false;
         }
 
-      //  if (characterStats.m_currentProtoclass.timeUntilNextBlock <= 0.0f)
-        {
-     //       characterStats.m_currentProtoclass.timeUntilBlockRunsOut = characterStats.m_currentProtoclass.blockingtimer;
-        }
+        //if (characterStats.m_currentProtoclass.timeUntilNextBlock <= 0.0f)
+        //{
+        //    characterStats.m_currentProtoclass.timeUntilBlockRunsOut = characterStats.m_currentProtoclass.blockingtimer;
+        //}
     }
 }

@@ -17,6 +17,8 @@ public class MovementManager : MonoBehaviour
     [ReadOnly]
     public Animator m_animator;
     public SpriteRenderer spriteRenderer;
+    [ReadOnly]
+    public SoundManager soundManager;
 
     void OnValidate()
     {
@@ -26,6 +28,7 @@ public class MovementManager : MonoBehaviour
         isfacingRight = true;
         m_animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     private void Update()
@@ -63,12 +66,14 @@ public class MovementManager : MonoBehaviour
         {
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * -1 * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
             if (m_animator)
-            {
-                m_animator.SetBool("IsMoving", true);
             }
+            m_animator.SetBool("IsMoving", true);
+            m_animator.SetBool("IsJumping", false);
+            {
         }
         else if (m_Stats.isInAir)
         {
+            m_animator.SetBool("IsJumping", true);
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_airAcceleration * m_Stats.m_TotalStats.m_airAcceleration * -1 * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
         }
         else if (m_Stats.IsOnLeftWall)
@@ -104,12 +109,14 @@ public class MovementManager : MonoBehaviour
         {
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_Acceleration * m_Stats.m_TotalStats.m_Acceleration * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
             if (m_animator)
-            {
-                m_animator.SetBool("IsMoving", true);
             }
+            m_animator.SetBool("IsMoving", true);
+            m_animator.SetBool("IsJumping", false);
+            {
         }
         else if (m_Stats.isInAir)
         {
+            m_animator.SetBool("IsJumping", true);
             m_rigidBody.AddForce(new Vector2(m_Stats.m_TotalStats.m_airAcceleration * m_Stats.m_TotalStats.m_airAcceleration * efficacy * m_Stats.m_TotalStats.m_jumpSpeedGravityScale, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
         }
         else if (m_Stats.IsOnLeftWall)
@@ -139,6 +146,7 @@ public class MovementManager : MonoBehaviour
             if (m_Stats.IsGrounded)
             {
                 m_animator.SetBool("IsMoving", false);
+                m_animator.SetBool("IsJumping", false);
                 m_rigidBody.AddForce(new Vector2(-m_rigidBody.velocity.x * m_Stats.m_TotalStats.m_groundFriction * 2.0f, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
                 
                 if (Mathf.Abs(m_rigidBody.velocity.x) < 1.0f)
@@ -149,6 +157,7 @@ public class MovementManager : MonoBehaviour
                
             else if (m_Stats.isInAir)
             {
+                m_animator.SetBool("IsJumping", true);
                 m_rigidBody.AddForce(new Vector2(-m_rigidBody.velocity.x * m_Stats.m_TotalStats.m_AirFriction, 0.0f) * Time.deltaTime / Time.timeScale, ForceMode2D.Force);
             }
         }
@@ -163,6 +172,8 @@ public class MovementManager : MonoBehaviour
             m_rigidBody.AddForce(new Vector2(0, m_Stats.m_TotalStats.m_jumpHeight * m_Stats.m_TotalStats.m_jumpSpeedGravityScale / 4), ForceMode2D.Impulse);
 
             m_Stats.jumpsAvailable--;
+            m_animator.SetBool("IsJumping", true);
+            soundManager.Jump();
             m_Stats.jumpTime = Time.time;
 
             if (m_Stats.m_currentProtoclass.Equals(GetComponent<Mouse>())) //ANNE HERE - Jumping

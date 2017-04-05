@@ -722,6 +722,7 @@ MonoBehaviour:
   spikeThrow: {fileID: 8300000, guid: a144e7d6b8d30b24aa4710a9c977da40, type: 3}
   shieldBlock: {fileID: 8300000, guid: 655bf3d0b027e2b429b712b3cb1b97f0, type: 3}
   jump: {fileID: 8300000, guid: c607235cb23d3a843b7577054e1c3dd1, type: 3}
+  parry: {fileID: 8300000, guid: 84980d0b3a0527d4392d8c0a63ad0dbd, type: 3}
 --- !u!224 &550778064
 RectTransform:
   m_ObjectHideFlags: 0

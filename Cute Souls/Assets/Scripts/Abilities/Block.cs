@@ -6,7 +6,7 @@ public class Block : Ability
 {
     public override void UseAbility()
     {
-       // characterStats.m_currentProtoclass.timeUntilNextDamageTaken = 0.5f; //NEEED TESTING
+      //  characterStats.m_currentProtoclass.timeUntilNextDamageTaken = 0.5f; //NEEED TESTING
     }
 
 }

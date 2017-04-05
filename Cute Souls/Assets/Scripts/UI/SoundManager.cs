@@ -18,6 +18,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip spikeThrow;
     public AudioClip shieldBlock;
     public AudioClip jump;
+    public AudioClip parry;
 
 
     private AudioClip selectedTheme;
@@ -62,6 +63,13 @@ public class SoundManager : MonoBehaviour
             themeSource.clip = selectedTheme;
             themeSource.Play();
         }
+
+        if (sceneName == "FinalScene")
+        {
+            selectedTheme = gameTheme;
+            themeSource.clip = selectedTheme;
+            themeSource.Play();
+        }
     }
 
     public void Jump()
@@ -81,5 +89,10 @@ public class SoundManager : MonoBehaviour
     public void ShieldBlock()
     {
         efxSource.PlayOneShot(shieldBlock);
+    }
+
+    public void Parry()
+    {
+        efxSource.PlayOneShot(parry, 0.6f);
     }
 }

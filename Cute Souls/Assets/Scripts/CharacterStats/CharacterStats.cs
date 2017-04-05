@@ -11,6 +11,9 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     [Header("Character Stats")]
 
     public Archetype m_currentProtoclass;
+    public SoundManager soundManager;
+    public GameObject playerHealthBar;
+    private RectTransform playerHealthBarRT;
     [ReadOnly] public Archetype[] availableArchetypes;
     public Sprite[] m_Sprites;
     [ReadOnly] public float m_currentHealth;
@@ -58,11 +61,15 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
         }
         m_currentHealth = m_TotalStats.m_Health;
         m_MaxHealth = m_TotalStats.m_Health;
+        soundManager = FindObjectOfType<SoundManager>();
+        
     }
 
     private void Update()
     {
         m_TotalStats = m_currentProtoclass.m_totalStats;    //THIS MIGHT CAUSE LAG.
+        playerHealthBarRT = playerHealthBar.GetComponent<RectTransform>();
+        playerHealthBarRT.anchoredPosition = Vector2.Lerp(playerHealthBarRT.anchoredPosition, new Vector3(2 * m_currentHealth - 100, playerHealthBarRT.anchoredPosition.y), 0.2f);
 
         Debug.DrawRay(transform.position, Vector2.down * 2.0f, Color.red, 1.0f);
         bool groundCheck = Physics2D.Raycast(transform.position, Vector2.down, 2.0f, GroundLayerMask);
@@ -96,7 +103,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     {
 
         if (!isBlocking && !isParrying)
-     //   if (m_currentProtoclass.timeUntilNextDamageTaken <= 0.0f && !isParrying)
+       // if (m_currentProtoclass.timeUntilNextDamageTaken <= 0.0f && !isParrying)
         {
             Debug.Log(transform.name + " took " + _damage + " damage.");
             m_currentHealth -= _damage;
@@ -110,6 +117,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
         else if (isBlocking)
         {
             Debug.Log("Blocking that damage");
+            soundManager.ShieldBlock();
         }
 
         else if (isParrying)
@@ -128,7 +136,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
             }
 
             isParrying = false;
-
+            soundManager.Parry();
             Debug.Log("No damage because I got dem parrying skills");
         }
     }
