@@ -10,6 +10,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     [Header("Character Stats")]
 
     public Archetype m_currentProtoclass;
+    public SoundManager soundManager;
     public GameObject playerHealthBar;
     private RectTransform playerHealthBarRT;
     [ReadOnly] public Archetype[] availableArchetypes;
@@ -53,7 +54,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
         }
         m_currentHealth = m_TotalStats.m_Health;
         m_MaxHealth = m_TotalStats.m_Health;
-
+        soundManager = FindObjectOfType<SoundManager>();
         
     }
 
@@ -87,6 +88,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
         else if (isBlocking)
         {
             Debug.Log("Blocking that damage");
+            soundManager.ShieldBlock();
         }
 
         else if (isParrying)
@@ -105,7 +107,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
             }
 
             isParrying = false;
-
+            soundManager.Parry();
             Debug.Log("No damage because I got dem parrying skills");
         }
     }
