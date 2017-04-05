@@ -12,8 +12,9 @@ public class FloorColliderTrigger : MonoBehaviour
         if (currentCharacterStats)
         {
             currentCharacterStats.IsGrounded = true;
-            currentCharacterStats.isInAir = false;
             currentCharacterStats.jumpsAvailable = other.GetComponent<CharacterStats>().m_TotalStats.m_jumpsTotal;
+            currentCharacterStats.isInAir = false;
+
         }
     }
 
@@ -25,20 +26,23 @@ public class FloorColliderTrigger : MonoBehaviour
         {
             currentCharacterStats.IsGrounded = true;
             currentCharacterStats.isInAir = false;
-            currentCharacterStats.jumpsAvailable = other.GetComponent<CharacterStats>().m_TotalStats.m_jumpsTotal;
+       //     currentCharacterStats.jumpsAvailable = other.GetComponent<CharacterStats>().m_TotalStats.m_jumpsTotal;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         CharacterStats currentCharacterStats;
+        //Debug.Log("THIS1");
         currentCharacterStats = other.GetComponent<CharacterStats>();
         if (currentCharacterStats)
         {
             currentCharacterStats.IsGrounded = false;
-            if (currentCharacterStats.IsOnLeftWall == false && other.GetComponent<CharacterStats>().IsOnRightWall == false)
+          //  if (currentCharacterStats.IsOnLeftWall == false && other.GetComponent<CharacterStats>().IsOnRightWall == false)
             {
                 currentCharacterStats.isInAir = true;
+         //       Debug.Log("THIS2");
+                currentCharacterStats.m_TotalStats.m_jumpsTotal--;
             }
         }
     }

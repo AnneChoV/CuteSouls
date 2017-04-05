@@ -9,7 +9,7 @@ public class Slimey : AbstractEnemy
     public CircleCollider2D circle;
 
     public float timeBetweenUseAbilityZero;
-    [ReadOnly] private float abilityZerotimer;
+    [ReadOnly] public float abilityZerotimer = 0.5f;
 
     private void Start()
     {
@@ -26,8 +26,10 @@ public class Slimey : AbstractEnemy
 
         if (abilityZerotimer <= 0.0f)
         {
-          //  Debug.Log(m_playerPosition);
-            archetype.m_abilities[0].UseAbility(Camera.main.transform.parent.position, transform.position, SlimeyProjectile);
+            //To make it hit player:
+            //archetype.m_abilities[0].UseAbility(Camera.main.transform.parent.position, transform.position, SlimeyProjectile);
+
+            archetype.m_abilities[0].UseAbility(new Vector2(transform.position.x - 10, transform.position.y), transform.position, SlimeyProjectile);
             abilityZerotimer = timeBetweenUseAbilityZero;
             //Debug.Log(Camera.main.transform.parent.position);
         }

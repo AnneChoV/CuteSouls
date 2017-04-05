@@ -15,6 +15,7 @@ public class MeleeAttack : Ability
 
     public override void UseAbility()
     {
+        Debug.Log("meleeing");
         if (movementManager.isfacingRight)
         {
             facingDirection = new Vector2(1, 0);
@@ -25,7 +26,7 @@ public class MeleeAttack : Ability
         }
 
         RaycastHit2D[] hits;
-        hits = Physics2D.RaycastAll(transform.position, facingDirection, range);
+        hits = Physics2D.RaycastAll(transform.parent.transform.position, facingDirection, range);
         for (int x = 0; x < hits.Length; x++)
         {
             CharacterStats currentTargetStats = hits[x].transform.GetComponent<CharacterStats>();
@@ -36,11 +37,17 @@ public class MeleeAttack : Ability
                     currentTargetStats.TakeDamage(damage, false);
                 }
             }
+
+            if (hits[x].transform.tag.Equals("DestructableWall"))
+            {
+                hits[x].transform.gameObject.SetActive(false);
+            }
         }
     }
 
     public override void UseAbility(float _damage, float _range)
     {
+        Debug.Log("happening");
         damage = _damage;
         range = _range;
         UseAbility();

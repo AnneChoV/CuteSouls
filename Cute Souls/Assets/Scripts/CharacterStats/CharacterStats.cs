@@ -34,7 +34,13 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     [ReadOnly] public bool isInAir;
 
     [ReadOnly] public bool isBlocking;
+    [ReadOnly]
+    public bool isBlockingDamageFromLeft;
+    [ReadOnly]
+    public bool isBlockingDamageFromRight;
     [ReadOnly] public bool isParrying;
+    [ReadOnly] public bool canAttack;
+    [ReadOnly] public bool canClassSwap;
 
     private void OnValidate()
     {
@@ -70,6 +76,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     {
 
         if (!isBlocking && !isParrying)
+        if (m_currentProtoclass.timeUntilNextDamageTaken <= 0.0f && !isParrying)
         {
             Debug.Log(transform.name + " took " + _damage + " damage.");
             m_currentHealth -= _damage;

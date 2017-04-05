@@ -24,7 +24,7 @@ public class MovementManager : MonoBehaviour
         m_Stats = GetComponent<CharacterStats>();
         m_rigidBody = GetComponent<Rigidbody2D>();
         isfacingRight = true;
-        m_animator = GetComponent<Animator>();
+        m_animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 

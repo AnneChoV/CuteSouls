@@ -6,9 +6,10 @@ public abstract class Ability : MonoBehaviour {
 
     public CharacterStats characterStats;
     public MovementManager movementManager;
+
     //public string abilityName;
 
-    private void OnValidate()
+    public virtual void OnValidate()
     {
         characterStats = GetComponentInParent<CharacterStats>();
         movementManager = GetComponentInParent<MovementManager>();
