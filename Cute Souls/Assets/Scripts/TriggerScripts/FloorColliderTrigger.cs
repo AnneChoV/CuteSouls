@@ -33,7 +33,7 @@ public class FloorColliderTrigger : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         CharacterStats currentCharacterStats;
-        Debug.Log("THIS1");
+        //Debug.Log("THIS1");
         currentCharacterStats = other.GetComponent<CharacterStats>();
         if (currentCharacterStats)
         {
@@ -41,7 +41,7 @@ public class FloorColliderTrigger : MonoBehaviour
           //  if (currentCharacterStats.IsOnLeftWall == false && other.GetComponent<CharacterStats>().IsOnRightWall == false)
             {
                 currentCharacterStats.isInAir = true;
-                Debug.Log("THIS2");
+         //       Debug.Log("THIS2");
                 currentCharacterStats.m_TotalStats.m_jumpsTotal--;
             }
         }

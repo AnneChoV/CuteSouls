@@ -153,7 +153,7 @@ public class PlayerInputManager : MonoBehaviour {       //This class is used by 
         }
         else if (m_stats.m_currentProtoclass.Equals(tortoise))
         {
-            m_stats.m_currentProtoclass.m_abilities[1].UseAbility(20, 5);
+            m_stats.m_currentProtoclass.m_abilities[1].UseAbility(20, 30);
         }
     }
 

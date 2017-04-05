@@ -22,8 +22,7 @@ public class EnemyProjectile : MonoBehaviour {
 
     // Use this for initialization
     void Start()
-    {
-        
+    {    
         UserTransform = transform.parent.parent.GetComponent<Transform>();
         UserPosition = UserTransform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -41,7 +40,7 @@ public class EnemyProjectile : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        myRigidbody.velocity = velocity * 10.0f; // CHANGE PROJECTILE SPEED
+        myRigidbody.velocity = velocity * speed; // CHANGE PROJECTILE SPEED lolsoz
         myRigidbody.angularVelocity = rotationSpeed;
     }
 
@@ -54,7 +53,24 @@ public class EnemyProjectile : MonoBehaviour {
             {
                 colliderStats.TakeDamage(10, true);
             }
+            Debug.Log(collision.name);
             Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log(tag);
+            Debug.Log(collision.tag);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (gameObject)
+        {
+            if (!(collision.transform.tag.Equals(transform.parent.parent.tag)))
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -17,8 +17,9 @@ public class ClassSwap : Ability    //If we want to allow enemies to use this, w
         characterStats.UpdatePercentageHealth();
     }
 
-    private void OnValidate()
+    public override void OnValidate()
     {
+        base.OnValidate();
         m_rigidBody = transform.parent.GetComponent<Rigidbody2D>();
     }
 
@@ -55,7 +56,7 @@ public class ClassSwap : Ability    //If we want to allow enemies to use this, w
         int indexOfNext = (indexOfCurrent + 1) % numberOfArchetypesAvailable;
         characterStats.m_currentProtoclass = characterStats.availableArchetypes[indexOfNext];
 
-        transform.parent.Find("SpriteRenderer").GetComponent<SpriteRenderer>().sprite = characterStats.m_Sprites[indexOfCurrent];
-        GetComponentInParent<Animator>().runtimeAnimatorController = characterStats.m_currentProtoclass.animatorController;
+        movementManager.spriteRenderer.sprite = characterStats.m_Sprites[indexOfCurrent];
+        movementManager.m_animator.runtimeAnimatorController = characterStats.m_currentProtoclass.animatorController;
     }
 }

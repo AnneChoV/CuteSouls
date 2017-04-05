@@ -21,6 +21,8 @@ TagManager:
   - ResultSlot
   - MainInventory
   - Timer
+  - Projectile
+  - DestructableWall
   layers:
   - Default
   - TransparentFX
