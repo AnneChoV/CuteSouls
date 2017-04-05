@@ -20,6 +20,8 @@ public class ClassSwap : Ability    //If we want to allow enemies to use this, w
     private void OnValidate()
     {
         m_rigidBody = transform.parent.GetComponent<Rigidbody2D>();
+        characterStats = GetComponentInParent<CharacterStats>();
+        movementManager = GetComponentInParent<MovementManager>();
     }
 
     private void UpdateVelocity()
