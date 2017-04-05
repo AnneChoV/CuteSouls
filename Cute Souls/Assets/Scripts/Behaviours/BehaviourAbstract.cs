@@ -33,7 +33,6 @@ public abstract class BehaviourAbstract : MonoBehaviour
     public virtual bool NotAtEdge()
     {
         bool notAtEdge = Physics2D.OverlapCircle(transform.parent.Find("EdgeCheck").position, 0.5f, GroundLayer);
-        Debug.Log(notAtEdge);
         return notAtEdge;
     }
 

@@ -30,22 +30,12 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     [ReadOnly] public bool IsOnRightWall;
     [ReadOnly] public bool isInAir;
 
+    [ReadOnly] public bool isReducingDamage;
+    [ReadOnly] public bool isParrying;
+
     private void OnValidate()
     {
-        m_defaultStats = m_currentProtoclass.m_classDefaultStats;
-        m_equipmentStats = m_currentProtoclass.m_EquipmentStats;
-        m_TotalStats = m_currentProtoclass.m_EquipmentStats;
-
-        m_TotalStats.m_Acceleration = m_defaultStats.m_Acceleration + m_equipmentStats.m_Acceleration;
-        m_TotalStats.m_airAcceleration = m_defaultStats.m_airAcceleration + m_equipmentStats.m_airAcceleration;
-        m_TotalStats.m_AirFriction = m_defaultStats.m_AirFriction + m_equipmentStats.m_AirFriction;
-        m_TotalStats.m_groundFriction = m_defaultStats.m_groundFriction + m_equipmentStats.m_groundFriction;
-        m_TotalStats.m_Health = m_defaultStats.m_Health + m_equipmentStats.m_Health;
-        m_TotalStats.m_jumpHeight = m_defaultStats.m_jumpHeight + m_equipmentStats.m_jumpHeight;
-        m_TotalStats.m_jumpSpeedGravityScale = m_defaultStats.m_jumpSpeedGravityScale + m_defaultStats.m_jumpSpeedGravityScale;
-        m_TotalStats.m_jumpsTotal = m_defaultStats.m_jumpsTotal + m_equipmentStats.m_jumpsTotal;
-        m_TotalStats.m_maxSpeed = m_defaultStats.m_maxSpeed + m_equipmentStats.m_maxSpeed;
-        jumpsAvailable = m_TotalStats.m_jumpsTotal; //Start with max jumps.
+        m_TotalStats = m_currentProtoclass.m_totalStats;
 
         availableArchetypes = GetComponents<Archetype>();
 
@@ -55,5 +45,61 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
         }
         m_currentHealth = m_TotalStats.m_Health;
         m_MaxHealth = m_TotalStats.m_Health;
+    }
+
+    private void Update()
+    {
+        m_TotalStats = m_currentProtoclass.m_totalStats;    //THIS MIGHT CAUSE LAG.
+    }
+
+    public void UpdatePercentageHealth()
+    {
+        m_percentageHealth = m_currentHealth / m_MaxHealth * 100;
+    }
+
+    public void TakeDamage(float _damage, bool isRanged)
+    {
+
+        if (m_currentProtoclass.timeUntilNextDamageTaken <= 0.0f && !isParrying)
+        {
+            if (isReducingDamage)
+            {
+                _damage /= 2;
+            }
+            Debug.Log(transform.name + " took " + _damage + " damage.");
+            m_currentHealth -= _damage;
+            UpdatePercentageHealth();
+
+            m_currentProtoclass.timeUntilNextDamageTaken = m_currentProtoclass.immunityFramesNumber;
+
+            if (m_currentHealth <= 0.0f)
+            {
+                m_currentProtoclass.EnvokeDeath();
+            }
+        }
+
+        else if (isParrying)
+        {
+            // if the parry is tier one and the attack is not a projectile
+            if (!isRanged && GetComponent<Mouse>().m_currentClassSkillTier == 1)
+            {
+                Debug.Log("Taking damage?");
+                m_currentHealth -= _damage;
+                UpdatePercentageHealth();
+
+                m_currentProtoclass.timeUntilNextDamageTaken = m_currentProtoclass.immunityFramesNumber;
+
+                if (m_currentHealth <= 0.0f)
+                {
+                    m_currentProtoclass.EnvokeDeath();
+                }
+
+                isParrying = false;
+            }
+
+            isParrying = false;
+
+            Debug.Log("No damage because I got dem parrying skills");
+        }
     }
 }

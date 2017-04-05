@@ -11,6 +11,54 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1853951285851730}
   m_IsPrefabParent: 1
+--- !u!1 &1282627932635180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4682344856611224}
+  - component: {fileID: 114292744344156464}
+  m_Layer: 10
+  m_Name: AbilityHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1580527845907948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4841672337016898}
+  - component: {fileID: 114259019570152764}
+  - component: {fileID: 114702911176571510}
+  m_Layer: 10
+  m_Name: BehaviourHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1734550506409678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4532852995646670}
+  m_Layer: 10
+  m_Name: EdgeCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: -2349822300998112484, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1853951285851730
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,13 +74,53 @@ GameObject:
   - component: {fileID: 114341524648731964}
   - component: {fileID: 114750320238825658}
   - component: {fileID: 114539888605989472}
-  m_Layer: 0
+  - component: {fileID: 58181995576671052}
+  m_Layer: 10
   m_Name: Slimey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4532852995646670
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1734550506409678}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.75, y: -2.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4966727165308346}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4682344856611224
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1282627932635180}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4966727165308346}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4841672337016898
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1580527845907948}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4966727165308346}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4966727165308346
 Transform:
   m_ObjectHideFlags: 1
@@ -40,9 +128,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1853951285851730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.39108, y: 2.57, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_LocalPosition: {x: 20.39108, y: -0.3, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_Children:
+  - {fileID: 4841672337016898}
+  - {fileID: 4532852995646670}
+  - {fileID: 4682344856611224}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -66,6 +157,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!58 &58181995576671052
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853951285851730}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.35247132}
+  serializedVersion: 2
+  m_Radius: 7.6
 --- !u!70 &70387437651960816
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -74,13 +180,46 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1853951285851730}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 63eeddf488c762d4c9a3969bfc59924c, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 2.56, y: 2.56}
+  m_Size: {x: 10, y: 2.56}
   m_Direction: 0
+--- !u!114 &114259019570152764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1580527845907948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 626cc066874919e4cba3621fa74b544c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_movementManager: {fileID: 0}
+  m_player: {fileID: 0}
+  m_playerPosition: {x: 11.35, y: 2.6, z: 0}
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!114 &114292744344156464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1282627932635180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779b41bec3080c04baa4827fd7a19b51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterStats: {fileID: 0}
+  movementManager: {fileID: 0}
+  m_targetPosition: {x: 0, y: 0, z: 0}
+  m_instantiationPosition: {x: 0, y: 0, z: 0}
+  m_instantiationObject: {fileID: 0}
 --- !u!114 &114341524648731964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,10 +231,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa7f3fbe6f023d4497e8eb2d0612301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_facingDirection: {x: 0, y: 0}
+  isfacingRight: 1
   m_attackingDirection: {x: 0, y: 0}
   m_rigidBody: {fileID: 50068608660440574}
   m_Stats: {fileID: 114750320238825658}
+  spriteRenderer: {fileID: 212553034383542824}
 --- !u!114 &114341933308303726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,19 +248,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_classDefaultStats:
-    m_Health: 0
-    m_maxSpeed: 50
-    m_Acceleration: 100
-    m_airAcceleration: 100
-    m_groundFriction: 2.9
-    m_AirFriction: 6.2
-    m_jumpHeight: 23.3
-    m_jumpSpeedGravityScale: 1.09
-    m_jumpsTotal: 45
-  m_abilities: []
-  m_behaviours: []
+    m_Health: 30
+    m_DamageToOtherUponCollision: 10
+    m_damageMultiplier: 1
+    m_maxSpeed: 5.6
+    m_Acceleration: 15.9
+    m_airAcceleration: 1.1
+    m_groundFriction: 99
+    m_AirFriction: 2.4
+    m_jumpHeight: 9.4
+    m_jumpSpeedGravityScale: 0.32
+    m_jumpsTotal: 19
+  m_abilities:
+  - {fileID: 114292744344156464}
+  m_behaviours:
+  - {fileID: 114259019570152764}
+  - {fileID: 114702911176571510}
   m_EquipmentStats:
     m_Health: 0
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 0
     m_maxSpeed: 0
     m_Acceleration: 0
     m_airAcceleration: 0
@@ -129,6 +276,24 @@ MonoBehaviour:
     m_jumpHeight: 0
     m_jumpSpeedGravityScale: 0
     m_jumpsTotal: 0
+  m_totalStats:
+    m_Health: 30
+    m_DamageToOtherUponCollision: 10
+    m_damageMultiplier: 1
+    m_maxSpeed: 5.6
+    m_Acceleration: 15.9
+    m_airAcceleration: 1.1
+    m_groundFriction: 99
+    m_AirFriction: 2.4
+    m_jumpHeight: 9.4
+    m_jumpSpeedGravityScale: 0.32
+    m_jumpsTotal: 19
+  immunityFramesNumber: 0
+  timeUntilNextDamageTaken: 0
+  blockingTimer: 0
+  timeUntilBlockRunsOut: 0
+  timeBetweenBlocks: 0
+  timeUntilNextBlock: 0
 --- !u!114 &114539888605989472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,7 +310,28 @@ MonoBehaviour:
   m_currentBehaviour: {fileID: 0}
   m_player: {fileID: 0}
   m_playerPosition: {x: 0, y: 0, z: 0}
-  m_distanceFromPlayer: 20.552399
+  m_distanceFromPlayer: 20.912336
+  SlimeyProjectile: {fileID: 1012086834330778, guid: 8a60f977ad5d81842801b7bc51619167,
+    type: 2}
+  circle: {fileID: 58181995576671052}
+  timeBetweenUseAbilityZero: 1
+--- !u!114 &114702911176571510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1580527845907948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83b5b74efd7dae4597d5610c147ad26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_movementManager: {fileID: 0}
+  m_player: {fileID: 0}
+  m_playerPosition: {x: 11.35, y: 2.6, z: 0}
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &114750320238825658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,19 +346,27 @@ MonoBehaviour:
   m_currentProtoclass: {fileID: 114341933308303726}
   availableArchetypes:
   - {fileID: 114341933308303726}
-  m_currentHealth: 0
+  m_Sprites: []
+  m_currentHealth: 30
+  m_MaxHealth: 30
+  m_percentageHealth: 0
+  jumpsAvailable: 19
   m_defaultStats:
     m_Health: 0
-    m_maxSpeed: 50
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 0
+    m_maxSpeed: 5.6
     m_Acceleration: 100
-    m_airAcceleration: 100
-    m_groundFriction: 2.9
-    m_AirFriction: 6.2
-    m_jumpHeight: 23.3
-    m_jumpSpeedGravityScale: 1.09
-    m_jumpsTotal: 45
+    m_airAcceleration: 1.1
+    m_groundFriction: 99
+    m_AirFriction: 2.4
+    m_jumpHeight: 9.4
+    m_jumpSpeedGravityScale: 0.32
+    m_jumpsTotal: 19
   m_equipmentStats:
     m_Health: 0
+    m_DamageToOtherUponCollision: 0
+    m_damageMultiplier: 0
     m_maxSpeed: 0
     m_Acceleration: 0
     m_airAcceleration: 0
@@ -182,19 +376,23 @@ MonoBehaviour:
     m_jumpSpeedGravityScale: 0
     m_jumpsTotal: 0
   m_TotalStats:
-    m_Health: 0
-    m_maxSpeed: 50
-    m_Acceleration: 100
-    m_airAcceleration: 100
-    m_groundFriction: 2.9
-    m_AirFriction: 6.2
-    m_jumpHeight: 23.3
-    m_jumpSpeedGravityScale: 2.18
-    m_jumpsTotal: 45
+    m_Health: 30
+    m_DamageToOtherUponCollision: 10
+    m_damageMultiplier: 1
+    m_maxSpeed: 5.6
+    m_Acceleration: 15.9
+    m_airAcceleration: 1.1
+    m_groundFriction: 99
+    m_AirFriction: 2.4
+    m_jumpHeight: 9.4
+    m_jumpSpeedGravityScale: 0.32
+    m_jumpsTotal: 19
   IsGrounded: 0
   IsOnLeftWall: 0
   IsOnRightWall: 0
   isInAir: 1
+  isReducingDamage: 0
+  isParrying: 0
 --- !u!212 &212553034383542824
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -227,9 +425,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 827c9cd4a3943534f909ac6473e17288, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 39a3a7c55f4b7a84896f0ea89e97c3df, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.56, y: 2.56}
