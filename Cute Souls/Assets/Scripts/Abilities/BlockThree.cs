@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class BlockThree : Ability
 {
+    public bool isBlocking;
 
-    public override void UseAbility()   //WILL HAVE TO DO A CHECK FOR RELEASE TO DISABLE THIS.
+    public override void UseAbility()
     {
-        characterStats.m_currentProtoclass.timeUntilNextDamageTaken = characterStats.m_currentProtoclass.blockingtimer * 2; //NEEED TESTING
+        characterStats.isBlocking = true;
+        isBlocking = true;
     }
 }

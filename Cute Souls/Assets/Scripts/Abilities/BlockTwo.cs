@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class BlockTwo : Ability
 {
+
+    public bool isBlocking;
     public override void UseAbility()
     {
-        characterStats.m_currentProtoclass.timeUntilNextDamageTaken = characterStats.m_currentProtoclass.blockingtimer; //NEEED TESTING
+        characterStats.isBlocking = true;
+        isBlocking = true;
     }
 }

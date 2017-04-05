@@ -30,6 +30,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     [ReadOnly] public bool IsOnRightWall;
     [ReadOnly] public bool isInAir;
 
+    [ReadOnly] public bool isBlocking;
     [ReadOnly]
     public bool isBlockingDamageFromLeft;
     [ReadOnly]
@@ -64,19 +65,22 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
 
     public void TakeDamage(float _damage, bool isRanged)
     {
+
+        if (!isBlocking && !isParrying)
         if (m_currentProtoclass.timeUntilNextDamageTaken <= 0.0f && !isParrying)
         {
-
             Debug.Log(transform.name + " took " + _damage + " damage.");
             m_currentHealth -= _damage;
             UpdatePercentageHealth();
-
-            m_currentProtoclass.timeUntilNextDamageTaken = m_currentProtoclass.immunityFramesNumber;
 
             if (m_currentHealth <= 0.0f)
             {
                 m_currentProtoclass.EnvokeDeath();
             }
+        }
+        else if (isBlocking)
+        {
+            Debug.Log("Blocking that damage");
         }
 
         else if (isParrying)
@@ -88,14 +92,10 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
                 m_currentHealth -= _damage;
                 UpdatePercentageHealth();
 
-                m_currentProtoclass.timeUntilNextDamageTaken = m_currentProtoclass.immunityFramesNumber;
-
                 if (m_currentHealth <= 0.0f)
                 {
                     m_currentProtoclass.EnvokeDeath();
                 }
-
-                isParrying = false;
             }
 
             isParrying = false;
