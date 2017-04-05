@@ -33,7 +33,7 @@ public class MeleeAttack : Ability
             {
                 if (currentTargetStats.tag == tag)  //Shouldnt it be !=? Why is this working??? Oh well.
                 {
-                    currentTargetStats.TakeDamage(damage);
+                    currentTargetStats.TakeDamage(damage, false);
                 }
             }
         }

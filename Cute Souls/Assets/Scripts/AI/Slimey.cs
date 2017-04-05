@@ -9,12 +9,12 @@ public class Slimey : AbstractEnemy
     public CircleCollider2D circle;
 
     public float timeBetweenUseAbilityZero;
-    [ReadOnly] private float abilityZeroTimer;
+    [ReadOnly] private float abilityZerotimer;
 
     private void Start()
     {
         m_currentBehaviour = archetype.m_behaviours[1];
-        //  archetype.m_abilities[1].UseAbility();
+        archetype.m_abilities[0].UseAbility(m_playerPosition, transform.position, SlimeyProjectile);
 
     }
     public override void Update()
@@ -22,19 +22,20 @@ public class Slimey : AbstractEnemy
         base.Update();
         m_currentBehaviour.ActOnBehaviour(m_playerPosition);    //This should make it move how we want.
 
-        abilityZeroTimer -= Time.deltaTime;
+        abilityZerotimer -= Time.deltaTime;
 
-        if (abilityZeroTimer <= 0.0f)
+        if (abilityZerotimer <= 0.0f)
         {
           //  Debug.Log(m_playerPosition);
-           // archetype.m_abilities[0].UseAbility(m_playerPosition, transform.position, SlimeyProjectile);
-            abilityZeroTimer = timeBetweenUseAbilityZero;
+            archetype.m_abilities[0].UseAbility(Camera.main.transform.parent.position, transform.position, SlimeyProjectile);
+            abilityZerotimer = timeBetweenUseAbilityZero;
+            //Debug.Log(Camera.main.transform.parent.position);
         }
     }
 
     private void OnValidate()
     {
-        abilityZeroTimer = timeBetweenUseAbilityZero;
+        abilityZerotimer = timeBetweenUseAbilityZero;
         circle = GetComponent<CircleCollider2D>();
     }
 }

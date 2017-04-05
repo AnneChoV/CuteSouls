@@ -322,7 +322,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 25146881}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07921791, y: 0.011410713, z: -0.4583596}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 4.085517, y: 4.0855174, z: 4.085518}
   m_Children: []
   m_Father: {fileID: 1334933792}
@@ -468,6 +468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats: {fileID: 1334933791}
   movementManager: {fileID: 1334933795}
+  parryWindow: 0
 --- !u!114 &41155889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +482,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats: {fileID: 1334933791}
   movementManager: {fileID: 1334933795}
+  timer: 0
+  dashing: 0
 --- !u!114 &41155890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,6 +497,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats: {fileID: 1334933791}
   movementManager: {fileID: 1334933795}
+  timer: 0
+  dashing: 0
 --- !u!114 &41155891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,6 +512,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats: {fileID: 1334933791}
   movementManager: {fileID: 1334933795}
+  timer: 0
+  dashing: 0
 --- !u!114 &41155892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,7 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats: {fileID: 1334933791}
   movementManager: {fileID: 1334933795}
-  currentReducingDamageTimer: 0
+  currentReducingDamagetimer: 0
 --- !u!114 &41155894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5752,7 +5759,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 644016119}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.340893, y: -5.28, z: 0}
+  m_LocalPosition: {x: 16.47, y: -5.28, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13431,6 +13438,7 @@ GameObject:
   - component: {fileID: 1334933791}
   - component: {fileID: 1334933801}
   - component: {fileID: 1334933797}
+  - component: {fileID: 1334933793}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -13534,7 +13542,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1334933789}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.35, y: 2.6, z: 0}
+  m_LocalPosition: {x: 6.47, y: -3.11, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 9.3}
   m_Children:
   - {fileID: 25146886}
@@ -13543,6 +13551,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1334933793
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1334933789}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &1334933794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13572,6 +13597,7 @@ MonoBehaviour:
   m_attackingDirection: {x: 0, y: 0}
   m_rigidBody: {fileID: 1334933790}
   m_Stats: {fileID: 1334933791}
+  m_animator: {fileID: 1334933793}
   spriteRenderer: {fileID: 1548210810}
 --- !u!114 &1334933796
 MonoBehaviour:
@@ -13656,6 +13682,7 @@ MonoBehaviour:
   - {fileID: 41155894}
   - {fileID: 41155895}
   m_behaviours: []
+  animatorController: {fileID: 0}
   m_EquipmentStats:
     m_Health: 100
     m_DamageToOtherUponCollision: 0
@@ -13684,7 +13711,7 @@ MonoBehaviour:
     doesGetStuckOnWalls: 0
   immunityFramesNumber: 3
   timeUntilNextDamageTaken: 0
-  blockingTimer: 0
+  blockingtimer: 0
   timeUntilBlockRunsOut: 0
   timeBetweenBlocks: 0
   timeUntilNextBlock: 0
@@ -13729,6 +13756,7 @@ MonoBehaviour:
   - {fileID: 41155894}
   - {fileID: 41155895}
   m_behaviours: []
+  animatorController: {fileID: 0}
   m_EquipmentStats:
     m_Health: 0
     m_DamageToOtherUponCollision: 0
@@ -13757,7 +13785,7 @@ MonoBehaviour:
     doesGetStuckOnWalls: 0
   immunityFramesNumber: 3
   timeUntilNextDamageTaken: 0
-  blockingTimer: 0
+  blockingtimer: 0
   timeUntilBlockRunsOut: 0
   timeBetweenBlocks: 0
   timeUntilNextBlock: 0
@@ -13804,6 +13832,7 @@ MonoBehaviour:
   - {fileID: 41155894}
   - {fileID: 41155895}
   m_behaviours: []
+  animatorController: {fileID: 0}
   m_EquipmentStats:
     m_Health: 0
     m_DamageToOtherUponCollision: 0
@@ -13832,7 +13861,7 @@ MonoBehaviour:
     doesGetStuckOnWalls: 0
   immunityFramesNumber: 3
   timeUntilNextDamageTaken: 0
-  blockingTimer: 0
+  blockingtimer: 0
   timeUntilBlockRunsOut: 0
   timeBetweenBlocks: 0
   timeUntilNextBlock: 0
@@ -15030,6 +15059,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1500563594 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1853951285851730, guid: ac70216d61aca87468f9d61df2597e71,
+    type: 2}
+  m_PrefabInternal: {fileID: 1668818193}
+--- !u!95 &1500563602
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1500563594}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1507248489
 GameObject:
   m_ObjectHideFlags: 0
@@ -15495,7 +15546,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1548210807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.68, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1334933792}
@@ -16941,6 +16992,12 @@ Prefab:
       propertyPath: movementManager
       value: 
       objectReference: {fileID: 330781322}
+    - target: {fileID: 114292744344156464, guid: ac70216d61aca87468f9d61df2597e71,
+        type: 2}
+      propertyPath: m_instantiationObject
+      value: 
+      objectReference: {fileID: 1012086834330778, guid: 8a60f977ad5d81842801b7bc51619167,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac70216d61aca87468f9d61df2597e71, type: 2}
   m_IsPrefabParent: 0

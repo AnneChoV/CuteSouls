@@ -17,7 +17,6 @@ public class ShootProjectile : Ability
 
     public override void UseAbility(Vector3 _targetPosition, Vector3 _instantiationPosition, GameObject _instantiationObject)
     {
-        Debug.Log("using Projectile");
         m_targetPosition = _targetPosition;
         m_instantiationPosition = _instantiationPosition;  
         m_instantiationObject = _instantiationObject;

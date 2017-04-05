@@ -55,7 +55,7 @@ public class ClassSwap : Ability    //If we want to allow enemies to use this, w
         int indexOfNext = (indexOfCurrent + 1) % numberOfArchetypesAvailable;
         characterStats.m_currentProtoclass = characterStats.availableArchetypes[indexOfNext];
 
-        GetComponentInParent<SpriteRenderer>().sprite = characterStats.m_Sprites[indexOfCurrent];
+        transform.parent.Find("SpriteRenderer").GetComponent<SpriteRenderer>().sprite = characterStats.m_Sprites[indexOfCurrent];
         GetComponentInParent<Animator>().runtimeAnimatorController = characterStats.m_currentProtoclass.animatorController;
     }
 }

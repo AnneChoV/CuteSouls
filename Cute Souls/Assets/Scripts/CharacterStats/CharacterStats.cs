@@ -57,8 +57,9 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
         m_percentageHealth = m_currentHealth / m_MaxHealth * 100;
     }
 
-    public void TakeDamage(float _damage)
+    public void TakeDamage(float _damage, bool isRanged)
     {
+
         if (m_currentProtoclass.timeUntilNextDamageTaken <= 0.0f && !isParrying)
         {
             if (isReducingDamage)
@@ -75,6 +76,30 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
             {
                 m_currentProtoclass.EnvokeDeath();
             }
+        }
+
+        else if (isParrying)
+        {
+            // if the parry is tier one and the attack is not a projectile
+            if (!isRanged && GetComponent<Mouse>().m_currentClassSkillTier == 1)
+            {
+                Debug.Log("Taking damage?");
+                m_currentHealth -= _damage;
+                UpdatePercentageHealth();
+
+                m_currentProtoclass.timeUntilNextDamageTaken = m_currentProtoclass.immunityFramesNumber;
+
+                if (m_currentHealth <= 0.0f)
+                {
+                    m_currentProtoclass.EnvokeDeath();
+                }
+
+                isParrying = false;
+            }
+
+            isParrying = false;
+
+            Debug.Log("No damage because I got dem parrying skills");
         }
     }
 }
