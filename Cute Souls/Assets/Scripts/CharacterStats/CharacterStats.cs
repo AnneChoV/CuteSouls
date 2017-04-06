@@ -68,8 +68,14 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
     private void Update()
     {
         m_TotalStats = m_currentProtoclass.m_totalStats;    //THIS MIGHT CAUSE LAG.
-       // playerHealthBarRT = playerHealthBar.GetComponent<RectTransform>();    //FIX
-      //  playerHealthBarRT.anchoredPosition = Vector2.Lerp(playerHealthBarRT.anchoredPosition, new Vector3(2 * m_currentHealth - 100, playerHealthBarRT.anchoredPosition.y), 0.2f);
+
+        playerHealthBarRT = playerHealthBar.GetComponent<RectTransform>();
+        if (playerHealthBarRT)
+        {
+            Debug.Log("RT found");
+            playerHealthBarRT.anchoredPosition = Vector2.Lerp(playerHealthBarRT.anchoredPosition, new Vector3(2 * m_currentHealth - 100, playerHealthBarRT.anchoredPosition.y), 0.2f);
+        }
+
 
         Debug.DrawRay(transform.position, Vector2.down * 2.0f, Color.red, 1.0f);
         bool groundCheck = Physics2D.Raycast(transform.position, Vector2.down, 2.0f, GroundLayerMask);

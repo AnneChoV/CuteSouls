@@ -14,7 +14,7 @@ public class SceneChanger : MonoBehaviour
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == "MainMenu")
+        if (SceneManager.GetActiveScene().name == "Main Menu")
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
             {
@@ -37,13 +37,6 @@ public class SceneChanger : MonoBehaviour
        
         SceneManager.LoadScene(sceneName);
         soundManager.playTheme(sceneName);
-
-        if (sceneName == "Test_Campfire")
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-       // FindObjectOfType<Fader>().OnLevelWasLoaded();
     }
 
     public void SceneLoad(string SceneName)
@@ -59,8 +52,7 @@ public class SceneChanger : MonoBehaviour
 
     public void NewButton()
     {
-        PlayerPrefs.DeleteAll();
-        StartCoroutine(LoadScene("IntroScene"));
+        StartCoroutine(LoadScene("FinalLevel"));
     }
 
 

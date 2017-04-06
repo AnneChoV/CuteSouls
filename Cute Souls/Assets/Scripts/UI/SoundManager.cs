@@ -64,7 +64,7 @@ public class SoundManager : MonoBehaviour
             themeSource.Play();
         }
 
-        if (sceneName == "FinalScene")
+        if (sceneName == "FinalLevel")
         {
             selectedTheme = gameTheme;
             themeSource.clip = selectedTheme;

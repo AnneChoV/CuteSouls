@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TestCharacterMenu : MonoBehaviour {
 
+    CharacterStats characterStats;
     [Header("Stats")]
     [Range(0, 3)]
     [ReadOnly]
@@ -59,15 +60,44 @@ public class TestCharacterMenu : MonoBehaviour {
     public Sprite noTriangle;
     public Sprite noSquare;
 
+    public Outline mouseOut;
+    public Outline porOut;
+    public Outline tortOut;
+
     // Use this for initialization
     void Start () {
+        characterStats = FindObjectOfType<CharacterStats>();
         checkClass();
+        HighlightClass();
     }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+
+    public void HighlightClass()
+    {
+        if (characterStats.m_currentProtoclass.Equals(GetComponent<Mouse>()))
+        {
+            mouseOut.enabled = true;
+            tortOut.enabled = false;
+            porOut.enabled = false;
+        }
+        if (characterStats.m_currentProtoclass.Equals(GetComponent<Tortoise>()))
+        {
+            tortOut.enabled = true;
+            mouseOut.enabled = false;
+            porOut.enabled = false;
+        }
+        if (characterStats.m_currentProtoclass.Equals(GetComponent<Porcupine>()))
+        {
+            porOut.enabled = true;
+            tortOut.enabled = false;
+            mouseOut.enabled = false;
+        }
+    }
 
     public void checkClass()
     {
