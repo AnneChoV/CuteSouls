@@ -26,15 +26,6 @@ public class TackleSlimey : AbstractEnemy
 
         abilityZerotimer -= Time.deltaTime;
 
-        if (abilityZerotimer <= 0.0f)
-        {
-            //To make it hit player:
-            //archetype.m_abilities[0].UseAbility(Camera.main.transform.parent.position, transform.position, SlimeyProjectile);
-
-           // archetype.m_abilities[0].UseAbility(new Vector2(transform.position.x - 10, transform.position.y), transform.position, SlimeyProjectile);
-          //  abilityZerotimer = timeBetweenUseAbilityZero;
-            //Debug.Log(Camera.main.transform.parent.position);
-        }
     }
 
     public override void OnValidate()

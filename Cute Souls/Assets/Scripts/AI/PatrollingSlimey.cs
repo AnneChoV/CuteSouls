@@ -17,12 +17,14 @@ public class PatrollingSlimey : AbstractEnemy
 
     private void Start()
     {
+        GetComponent<CharacterStats>().IsGrounded = true;
         //archetype.m_abilities[0].UseAbility(m_playerPosition, transform.position, SlimeyProjectile);
     }
 
 
     public override void Update()
     {
+        
         base.Update();
         m_currentBehaviour.ActOnBehaviour(m_playerPosition);    //This should make it move how we want.
 

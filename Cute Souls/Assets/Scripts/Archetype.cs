@@ -19,6 +19,7 @@ public class Archetype : MonoBehaviour {
 
     public float immunityFramesNumber;
     [ReadOnly]
+    public float timeUntilDamagetaken;
 
     //public float timeUntilNextDamageTaken;
 

@@ -168,33 +168,36 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleMeleeAttack()    //ANNE HERE - Attack animations.
     {
-        if (m_stats.m_currentProtoclass.Equals(porcupine))
+        if (m_stats.canAttack)
         {
-            if (m_movementManager.isfacingRight)
+            if (m_stats.m_currentProtoclass.Equals(porcupine))
             {
-                targetDirection = new Vector2(transform.position.x + 5, transform.position.y);
+                if (m_movementManager.isfacingRight)
+                {
+                    targetDirection = new Vector2(transform.position.x + 5, transform.position.y);
+                }
+                else
+                {
+                    targetDirection = new Vector2(transform.position.x - 5, transform.position.y);
+                }
+                // Vector2 instantiationPosition = new Vector2(transform.position.x + facingDirection.x * 2.0f, transform.position.y);
+                m_stats.m_currentProtoclass.m_abilities[2].UseAbility(targetDirection, transform.position, porcupine.playerProjectile);
             }
-            else
+            else if (m_stats.m_currentProtoclass.Equals(mouse))
             {
-                targetDirection = new Vector2(transform.position.x - 5, transform.position.y);
+                m_stats.m_currentProtoclass.m_abilities[1].UseAbility(20, 5);
             }
-            // Vector2 instantiationPosition = new Vector2(transform.position.x + facingDirection.x * 2.0f, transform.position.y);
-            m_stats.m_currentProtoclass.m_abilities[2].UseAbility(targetDirection, transform.position, porcupine.playerProjectile);
-        }
-        else if (m_stats.m_currentProtoclass.Equals(mouse))
-        {
-            m_stats.m_currentProtoclass.m_abilities[1].UseAbility(20, 5);
-        }
-        else if (m_stats.m_currentProtoclass.Equals(tortoise))
-        {
-            m_stats.m_currentProtoclass.m_abilities[1].UseAbility(20, 30);
-        }
+            else if (m_stats.m_currentProtoclass.Equals(tortoise))
+            {
+                m_stats.m_currentProtoclass.m_abilities[1].UseAbility(20, 30);
+            }
 
-        m_animator.SetBool("IsAttacking", true);
+            m_animator.SetBool("IsAttacking", true);
 
-        attacking = true;
-        attackTimer = attackTiming; //set this
-        Debug.Log("attakcin");
+            attacking = true;
+            attackTimer = attackTiming; //set this
+            Debug.Log("attakcin");
+        }
     }
 
 

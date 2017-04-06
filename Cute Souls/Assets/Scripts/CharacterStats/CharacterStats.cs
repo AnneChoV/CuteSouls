@@ -62,7 +62,7 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
         m_currentHealth = m_TotalStats.m_Health;
         m_MaxHealth = m_TotalStats.m_Health;
         soundManager = FindObjectOfType<SoundManager>();
-        
+  
     }
 
     private void Update()
@@ -73,6 +73,8 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
 
         Debug.DrawRay(transform.position, Vector2.down * 2.0f, Color.red, 1.0f);
         bool groundCheck = Physics2D.Raycast(transform.position, Vector2.down, 2.0f, GroundLayerMask);
+
+        m_currentProtoclass.timeUntilDamagetaken -= Time.deltaTime;
 
         if (groundCheck != IsGrounded)
         {
@@ -101,13 +103,14 @@ public class CharacterStats : MonoBehaviour {   //This class is used by both pla
 
     public void TakeDamage(float _damage, bool isRanged)
     {
-
-        if (!isBlocking && !isParrying)
+        if (!isBlocking && !isParrying && m_currentProtoclass.timeUntilDamagetaken <= 0.0f)
        // if (m_currentProtoclass.timeUntilNextDamageTaken <= 0.0f && !isParrying)
         {
             Debug.Log(transform.name + " took " + _damage + " damage.");
             m_currentHealth -= _damage;
             UpdatePercentageHealth();
+
+            m_currentProtoclass.timeUntilDamagetaken = m_currentProtoclass.immunityFramesNumber;
 
             if (m_currentHealth <= 0.0f)
             {
